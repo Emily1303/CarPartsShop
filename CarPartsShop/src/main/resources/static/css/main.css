@@ -1,0 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Inter:wght@500&family=PT+Sans&family=Poppins:wght@300&family=Roboto+Condensed:ital@1&display=swap');
+
+body {
+    font-family: "Roboto Condensed", serif;
+    font-size: 20px;
+}
+
+.navbar {
+    font-size: 25px;
+}
+
+.brand {
+    font-size: 35px;
+    margin: 0 25px;
+}
+
+.ul-style {
+    width: 1000px;
+    margin-left: 50px;
+}
+
+.main-form {
+    padding: 40px 50px;
+}
