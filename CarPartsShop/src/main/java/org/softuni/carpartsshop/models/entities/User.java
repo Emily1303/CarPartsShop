@@ -6,6 +6,7 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.softuni.carpartsshop.validations.*;
 
 @Entity
 @Table(name = "users")
@@ -23,12 +24,10 @@ public class User extends BaseEntity {
 
     @NotNull
     @Email
-//    TODO:make special validation for unique email (see if the email is in the database or not)
-    @Column
+    @Column(unique = true)
     private String email;
 
     @NotNull
-//    TODO:special validation for password (the length, what elements consists of)
     @Column
     private String password;
 

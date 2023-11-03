@@ -1,29 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
-  <header th:fragment="navbar">
-    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
-      <div class="collapse navbar-collapse">
-        <a class="navbar-brand text-white brand" th:href="@{/}">
-          C<i class="fa-solid fa-gear"></i>rP<i class="fa-solid fa-gear"></i>rts
-        </a>
-        <ul class="navbar-nav mr-auto justify-content-between ul-style">
-          <li class="nav-item">
-            <a class="nav-link text-white" th:href="@{/}">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" th:href="@{/register}">Registration</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" th:href="@{/login}">Login</a>
-          </li>
+    <header th:fragment="navbar">
+      <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="collapse navbar-collapse">
+          <a class="navbar-brand text-white brand" th:href="@{/}">
+            C<i class="fa-solid fa-gear"></i>rP<i class="fa-solid fa-gear"></i>rts
+          </a>
+          <ul class="navbar-nav mr-auto justify-content-between ul-style">
+            <li class="nav-item" th:if="${@currentUser.isLogged()}">
+              <a class="nav-link text-white" th:href="@{/home}">Home</a>
+            </li>
+            <li class="nav-item" th:unless="${@currentUser.isLogged()}">
+              <a class="nav-link text-white" th:href="@{/register}">Registration</a>
+            </li>
+            <li class="nav-item" th:unless="${@currentUser.isLogged()}">
+              <a class="nav-link text-white" th:href="@{/login}">Login</a>
+            </li>
 
-          <li class="nav-item">
-            <a class="nav-link text-white" th:href="@{/logout}">Logout</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-  </header>
+            <div class="form-inline my-2 my-lg-0 px-3">
+              <li class="nav-item d-inline-block" th:if="${@currentUser.isLogged()}">
+                <i class="fa-solid fa-circle-user"></i>
+                <a class="nav-link text-white" th:href="@{/logout}">Logout</a>
+              </li>
+            </div>
+          </ul>
+        </div>
+      </nav>
+    </header>
 </body>
 </html>
