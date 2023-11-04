@@ -9,6 +9,7 @@ import org.softuni.carpartsshop.util.CurrentUser;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
@@ -34,6 +35,7 @@ public class UserServiceImpl implements UserService {
         newUser.setLastName(registerDto.lastName());
         newUser.setEmail(registerDto.email());
         newUser.setPassword(passwordEncoder.encode(registerDto.password()));
+        newUser.setCreatedOn(LocalDateTime.now());
 
         userRepository.save(newUser);
     }

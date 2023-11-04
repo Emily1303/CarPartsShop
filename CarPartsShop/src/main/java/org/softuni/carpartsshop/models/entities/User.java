@@ -6,7 +6,8 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
-import org.softuni.carpartsshop.validations.*;
+
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "users")
@@ -30,6 +31,10 @@ public class User extends BaseEntity {
     @NotNull
     @Column
     private String password;
+
+    @NotNull
+    @Column(name = "created_on")
+    private LocalDateTime createdOn;
 
     public User() {
 
@@ -65,6 +70,14 @@ public class User extends BaseEntity {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public LocalDateTime getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(LocalDateTime createdOn) {
+        this.createdOn = createdOn;
     }
 
 }
