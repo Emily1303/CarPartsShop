@@ -1,14 +1,18 @@
 package org.softuni.carpartsshop.models.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "models")
+@NamedEntityGraph(
+        name = "modelsWithSubmodels",
+        attributeNodes = @NamedAttributeNode("submodels")
+)
 public class Model extends BaseEntity {
 
     @NotNull
@@ -19,8 +23,11 @@ public class Model extends BaseEntity {
     @ManyToOne
     private Brand brand;
 
-    public Model() {
+    @OneToMany(mappedBy = "model")
+    private Set<Submodel> submodels;
 
+    public Model() {
+        this.submodels  = new HashSet<>();
     }
 
     public String getModelName() {
@@ -39,4 +46,11 @@ public class Model extends BaseEntity {
         this.brand = brand;
     }
 
+    public Set<Submodel> getSubModels() {
+        return submodels;
+    }
+
+    public void setSubModels(Set<Submodel> subModels) {
+        this.submodels = subModels;
+    }
 }

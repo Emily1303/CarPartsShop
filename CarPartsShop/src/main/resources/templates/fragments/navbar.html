@@ -18,12 +18,14 @@
               <a class="nav-link text-white" th:href="@{/login}">Login</a>
             </li>
 
-            <div class="form-inline my-2 my-lg-0 px-3">
-              <li class="nav-item d-inline-block" th:if="${@currentUser.isLogged()}">
-                <i class="fa-solid fa-circle-user"></i>
-                <a class="nav-link text-white" th:href="@{/logout}">Logout</a>
-              </li>
-            </div>
+            <li class="nav-item" th:if="${@currentUser.isLogged()}">
+              <div class="form-inline my-2 my-lg-0">
+                <div class="logged-user text-primary">
+                  Welcome, <th:block th:text="${@currentUser.getFullName()}"></th:block>
+                </div>
+                <a class="nav-link" th:href="@{logout}">Logout</a>
+              </div>
+            </li>
           </ul>
         </div>
       </nav>

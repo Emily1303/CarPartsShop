@@ -1,9 +1,6 @@
 package org.softuni.carpartsshop.models.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -12,6 +9,10 @@ import java.util.Set;
 
 @Entity
 @Table(name = "brands")
+@NamedEntityGraph(
+        name = "brandWithModels",
+        attributeNodes = @NamedAttributeNode("models")
+)
 public class Brand extends BaseEntity {
 
     @NotNull
