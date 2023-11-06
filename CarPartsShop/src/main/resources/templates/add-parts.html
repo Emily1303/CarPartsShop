@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head}">
+</head>
+
+<body>
+  <header th:replace="~{fragments/navbar}">
+  </header>
+
+  <main>
+    <form th:action="@{/add-part}"
+          th:method="post"
+          class="main-form mx-auto col-md-12 d-flex flex-column justify-content-center">
+      <div class="row">
+        <div class="form-group col-md-6 mb-3">
+          <label for="brandName" class="text-dark font-weight-bold">Brand name</label>
+
+          <input id="brandName"
+                 name="brandName" type="text" class="form-control border-danger"
+                 placeholder="Brand name"/>
+          <p
+             class="errors text-danger">
+          </p>
+        </div>
+
+        <div class="form-group col-md-6 mb-3">
+          <label for="modelName" class="text-dark font-weight-bold">Model name</label>
+          <input id="modelName"
+                 name="modelName" type="text" class="form-control"
+                 placeholder="Model name"/>
+          <p
+             class="errors alert alert-danger">
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6 mb-3">
+          <label for="submodelName" class="text-dark font-weight-bold">Submodel name</label>
+          <input id="submodelName"
+                 name="submodelName" type="text" class="form-control"
+                 placeholder="Submodel Name"/>
+          <p
+             class="errors alert alert-danger">
+          </p>
+        </div>
+
+        <div class="form-group col-md-6 mb-3">
+          <label for="engine" class="text-dark font-weight-bold">Engine</label>
+          <input id="engine"
+                 name="engine" type="text" class="form-control"
+                 placeholder="Engine"/>
+          <p
+             class="errors alert alert-danger">
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6 mb-3">
+          <label for="horsePower" class="text-dark font-weight-bold">Horse power</label>
+          <input id="horsePower"
+                 name="horsePower" type="text" class="form-control"
+                 placeholder="Horse power"/>
+          <p
+             class="errors alert alert-danger">
+          </p>
+        </div>
+
+        <div class="form-group col-md-6 mb-3">
+          <label for="year" class="text-dark font-weight-bold">Year</label>
+
+          <input id="year"
+                 name="year" type="text" class="form-control border-danger"
+                 placeholder="Year"/>
+          <p
+                  class="errors text-danger">
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6 mb-3">
+          <label for="fuel" class="text-dark font-weight-bold">Fuel</label>
+          <input id="fuel"
+                 name="fuel" type="text" class="form-control"
+                 placeholder="Fuel"/>
+          <p
+                  class="errors alert alert-danger">
+          </p>
+        </div>
+
+        <div class="form-group col-md-6 mb-3">
+          <label for="partName" class="text-dark font-weight-bold">Part name</label>
+          <input id="partName"
+                 name="partName" type="text" class="form-control"
+                 placeholder="Part name"/>
+          <p
+                  class="errors alert alert-danger">
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col col-md-4">
+          <div class="button-holder d-flex">
+            <input type="submit" class="btn btn-info bg-dark text-white btn-lg" value="Add part"/>
+          </div>
+        </div>
+      </div>
+    </form>
+  </main>
+</body>
+</html>

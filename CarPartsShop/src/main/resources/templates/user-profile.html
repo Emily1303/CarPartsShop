@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="~{fragments/head}">
+</head>
+
+<body>
+    <header th:replace="~{fragments/navbar}">
+    </header>
+
+    <main>
+        <div class="container-fluid">
+            <h2>
+                User profile!
+            </h2>
+
+            <h3>
+                Here is the profile of user <th:block></th:block>
+            </h3>
+        </div>
+    </main>
+</body>
+</html>

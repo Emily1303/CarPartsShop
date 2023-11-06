@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -36,6 +37,7 @@ public class UserServiceImpl implements UserService {
         newUser.setEmail(registerDto.email());
         newUser.setPassword(passwordEncoder.encode(registerDto.password()));
         newUser.setCreatedOn(LocalDateTime.now());
+        newUser.setUuid(UUID.randomUUID());
 
         userRepository.save(newUser);
     }
@@ -59,6 +61,7 @@ public class UserServiceImpl implements UserService {
             currentUser.setLogged(true);
             currentUser.setFirstName(user.getFirstName());
             currentUser.setLastName(user.getLastName());
+            currentUser.setUuid(user.getUuid());
 
             loginSuccessful = true;
         }
@@ -69,6 +72,13 @@ public class UserServiceImpl implements UserService {
     @Override
     public void logout() {
         currentUser.logout();
+    }
+
+    @Override
+    public UUID getUuid(LoginDto loginDto) {
+        User user = userRepository.findByEmail(loginDto.email()).get();
+
+        return user.getUuid();
     }
 
 }

@@ -9,21 +9,27 @@
           </a>
           <ul class="navbar-nav mr-auto justify-content-between ul-style">
             <li class="nav-item" th:if="${@currentUser.isLogged()}">
-              <a class="nav-link text-white" th:href="@{/home}">Home</a>
+              <a class="nav-link text-white" th:href="@{/{uuid}/home}">Home</a>
             </li>
+
+            <li class="nav-item" th:if="${@currentUser.isLogged()}">
+              <a class="nav-link text-white" th:href="@{/parts/add}">Add Part</a>
+            </li>
+
             <li class="nav-item" th:unless="${@currentUser.isLogged()}">
               <a class="nav-link text-white" th:href="@{/register}">Registration</a>
             </li>
+
             <li class="nav-item" th:unless="${@currentUser.isLogged()}">
               <a class="nav-link text-white" th:href="@{/login}">Login</a>
             </li>
 
             <li class="nav-item" th:if="${@currentUser.isLogged()}">
               <div class="form-inline my-2 my-lg-0">
-                <div class="logged-user text-primary">
+                <a class="logged-user text-primary" th:href="@{/profile}">
                   Welcome, <th:block th:text="${@currentUser.getFullName()}"></th:block>
-                </div>
-                <a class="nav-link" th:href="@{logout}">Logout</a>
+                </a>
+                <a class="nav-link" th:href="@{/logout}">Logout</a>
               </div>
             </li>
           </ul>

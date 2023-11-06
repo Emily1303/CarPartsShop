@@ -3,6 +3,8 @@ package org.softuni.carpartsshop.util;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.SessionScope;
 
+import java.util.UUID;
+
 @Component(value = "currentUser")
 @SessionScope
 public class CurrentUser {
@@ -12,6 +14,8 @@ public class CurrentUser {
     private String lastName;
 
     private boolean isLogged;
+
+    private UUID uuid;
 
     public CurrentUser() {
 
@@ -41,6 +45,14 @@ public class CurrentUser {
         isLogged = logged;
     }
 
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
     public String getFullName() {
         StringBuilder sb = new StringBuilder();
 
@@ -61,6 +73,7 @@ public class CurrentUser {
         setFirstName(null);
         setLastName(null);
         setLogged(false);
+        setUuid(null);
     }
 
 }

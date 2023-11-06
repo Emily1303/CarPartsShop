@@ -1,11 +1,11 @@
 package org.softuni.carpartsshop.models.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table(name = "submodels")
@@ -35,8 +35,11 @@ public class Submodel extends BaseEntity {
     @Column
     private String fuel;
 
-    public Submodel() {
+    @ManyToMany
+    private List<Part> parts;
 
+    public Submodel() {
+        this.parts = new ArrayList<>();
     }
 
     public String getSubmodelName() {
@@ -85,6 +88,14 @@ public class Submodel extends BaseEntity {
 
     public void setFuel(String fuel) {
         this.fuel = fuel;
+    }
+
+    public List<Part> getParts() {
+        return parts;
+    }
+
+    public void setParts(List<Part> parts) {
+        this.parts = parts;
     }
 
 }

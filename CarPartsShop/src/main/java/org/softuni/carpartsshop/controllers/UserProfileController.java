@@ -1,32 +1,35 @@
 package org.softuni.carpartsshop.controllers;
 
+import org.softuni.carpartsshop.models.entities.User;
+import org.softuni.carpartsshop.services.UserService;
 import org.softuni.carpartsshop.util.CurrentUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.UUID;
+
 @Controller
-public class HomeController {
+public class UserProfileController {
+
+    private final UserService userService;
 
     private final CurrentUser currentUser;
 
-    public HomeController(CurrentUser currentUser) {
+    public UserProfileController(UserService userService, CurrentUser currentUser) {
+        this.userService = userService;
         this.currentUser = currentUser;
     }
 
-    @GetMapping("/")
-    public String indexPage() {
-        return "index";
-    }
-
-//    the home page is not ready - the uuid does not work
-    @GetMapping("/{uuid}/home")
-    public String homePage(@PathVariable("uuid") String uuid) {
+//    the uuid does not work
+    @GetMapping("/profile")
+    public String profile() {
         if (!currentUser.isLogged()) {
             return "redirect:/login";
         }
 
-        return "home";
+        return "user-profile";
     }
+
 
 }

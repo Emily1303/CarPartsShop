@@ -1,13 +1,12 @@
 package org.softuni.carpartsshop.models.entities;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Entity
 @Table(name = "users")
@@ -35,6 +34,11 @@ public class User extends BaseEntity {
     @NotNull
     @Column(name = "created_on")
     private LocalDateTime createdOn;
+
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(unique = true)
+    private UUID uuid;
 
     public User() {
 
@@ -80,4 +84,11 @@ public class User extends BaseEntity {
         this.createdOn = createdOn;
     }
 
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
 }

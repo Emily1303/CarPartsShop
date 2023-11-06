@@ -3,21 +3,26 @@ package org.softuni.carpartsshop.controllers;
 import jakarta.validation.Valid;
 import org.softuni.carpartsshop.models.dtos.LoginDto;
 import org.softuni.carpartsshop.services.UserService;
+import org.softuni.carpartsshop.util.CurrentUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.UUID;
 
 @Controller
 public class LoginUserController {
 
-    private UserService userService;
+    private final UserService userService;
 
-    public LoginUserController(UserService userService) {
+    private final CurrentUser currentUser;
+
+    public LoginUserController(UserService userService, CurrentUser currentUser) {
         this.userService = userService;
+        this.currentUser = currentUser;
     }
 
     @GetMapping("/login")
@@ -42,13 +47,18 @@ public class LoginUserController {
             return "redirect:/login";
         }
 
-        return userService.loginUser(loginDto) ? "redirect:/home" : "redirect:/login";
+        UUID uuid = userService.getUuid(loginDto);
+
+        return userService.loginUser(loginDto) ? "redirect:/" + uuid + "/home" : "redirect:/login";
     }
 
     @GetMapping("/logout")
     public String logout() {
-        userService.logout();
+        if (!currentUser.isLogged()) {
+            return "redirect:/login";
+        }
 
+        userService.logout();
         return "redirect:/";
     }
 
