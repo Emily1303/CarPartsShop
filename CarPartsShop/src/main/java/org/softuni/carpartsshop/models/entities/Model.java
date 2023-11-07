@@ -24,7 +24,7 @@ public class Model extends BaseEntity {
     @ManyToOne
     private Brand brand;
 
-    @OneToMany(mappedBy = "model")
+    @OneToMany(mappedBy = "model", fetch = FetchType.EAGER)
     private Set<Submodel> submodels;
 
     @NotNull

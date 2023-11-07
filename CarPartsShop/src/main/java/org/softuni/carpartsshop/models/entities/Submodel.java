@@ -14,7 +14,7 @@ import java.util.UUID;
 public class Submodel extends BaseEntity {
 
     @NotNull
-    @Size(min = 3, max = 20, message = "The model's name must be between 3 and 20 symbols!")
+    @Size(min = 1, max = 20, message = "The model's name must be between 3 and 20 symbols!")
     @Column(name = "submodel_name", unique = true)
     private String submodelName;
 

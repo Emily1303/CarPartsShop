@@ -11,7 +11,7 @@ public record AddPartDto(
         String brandName,
         @NotNull @Size(min = 3, max = 30, message = "The name of the model must be between 3 and 30 symbols!")
         String modelName,
-        @NotNull @Size(min = 3, max = 30, message = "The name of the submodel must be between 3 and 30 symbols!")
+        @NotNull @Size(min = 1, max = 30, message = "The name of the submodel must be between 3 and 30 symbols!")
         String submodelName,
         @NotNull @Size(min = 3, max = 10, message = "The engine must be between 3 and 10 symbols!")
         String engine,

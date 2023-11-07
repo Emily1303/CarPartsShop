@@ -100,10 +100,15 @@
 
         <div class="form-group col-md-6 mb-3">
           <label for="fuel" class="text-dark font-weight-bold">Fuel</label>
-          <input id="fuel"
-                 th:field="*{fuel}"
-                 name="fuel" type="text" class="form-control"
-                 placeholder="Fuel"/>
+          <select id="fuel"
+                  th:field="*{fuel}"
+                  class="form-control">
+            <option value="">- Select fuel type -</option>
+            <option th:each="f : ${fuelsEnumList}"
+                    th:text="${f}"
+                    th:value="${f}">
+            </option>
+          </select>
           <p th:if="${#fields.hasErrors('fuel')}"
              class="errors text-danger" th:errors="*{fuel}">
           </p>

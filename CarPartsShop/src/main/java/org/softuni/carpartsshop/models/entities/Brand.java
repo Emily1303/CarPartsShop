@@ -21,7 +21,7 @@ public class Brand extends BaseEntity {
     @Column(name = "brand_name", unique = true)
     private String brandName;
 
-    @OneToMany(mappedBy = "brand")
+    @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER)
     private Set<Model> models;
 
     @NotNull
