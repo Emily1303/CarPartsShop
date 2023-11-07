@@ -20,12 +20,22 @@ public class Part extends BaseEntity {
     private String partName;
 
     @NotNull
+    @Size(min = 3, max = 30, message = "The group's name must be between 3 and 30 symbols!")
+    @Column(name = "group_name", unique = true)
+    private String groupName;
+
+    @NotNull
     @Column
     private String kind;
 
     @NotNull
     @Column
     private String manufacturer;
+
+//    validation - valid serial number
+    @NotNull
+    @Column(name = "serial_number", unique = true)
+    private String serialNumber;
 
     @NotNull
     @Positive
@@ -38,7 +48,7 @@ public class Part extends BaseEntity {
 
     @NotNull
     @GeneratedValue(strategy = GenerationType.UUID)
-    @Column
+    @Column(unique = true)
     private UUID uuid;
 
     @ManyToMany(mappedBy = "parts")
@@ -62,6 +72,22 @@ public class Part extends BaseEntity {
 
     public void setKind(String kind) {
         this.kind = kind;
+    }
+
+    public String getGroupName() {
+        return groupName;
+    }
+
+    public void setGroupName(String groupName) {
+        this.groupName = groupName;
+    }
+
+    public String getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(String serialNumber) {
+        this.serialNumber = serialNumber;
     }
 
     public String getManufacturer() {

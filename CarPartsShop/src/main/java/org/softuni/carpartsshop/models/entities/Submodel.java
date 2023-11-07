@@ -3,9 +3,11 @@ package org.softuni.carpartsshop.models.entities;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import org.softuni.carpartsshop.models.enums.FuelsEnum;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Entity
 @Table(name = "submodels")
@@ -23,6 +25,11 @@ public class Submodel extends BaseEntity {
     @Column
     private String engine;
 
+//    validation - valid code: with digits, upper case letters, whitespaces and commas
+    @NotNull
+    @Column(name = "engine_code")
+    private String engineCode;
+
     @NotNull
     @Column(name = "horse_power", unique = true)
     private Integer horsePower;
@@ -32,11 +39,17 @@ public class Submodel extends BaseEntity {
     private String year;
 
     @NotNull
+    @Enumerated(EnumType.STRING)
     @Column
-    private String fuel;
+    private FuelsEnum fuel;
 
     @ManyToMany
     private List<Part> parts;
+
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(unique = true)
+    private UUID uuid;
 
     public Submodel() {
         this.parts = new ArrayList<>();
@@ -66,6 +79,14 @@ public class Submodel extends BaseEntity {
         this.engine = engine;
     }
 
+    public String getEngineCode() {
+        return engineCode;
+    }
+
+    public void setEngineCode(String engineCode) {
+        this.engineCode = engineCode;
+    }
+
     public Integer getHorsePower() {
         return horsePower;
     }
@@ -82,11 +103,11 @@ public class Submodel extends BaseEntity {
         this.year = year;
     }
 
-    public String getFuel() {
+    public FuelsEnum getFuel() {
         return fuel;
     }
 
-    public void setFuel(String fuel) {
+    public void setFuel(FuelsEnum fuel) {
         this.fuel = fuel;
     }
 
@@ -98,4 +119,11 @@ public class Submodel extends BaseEntity {
         this.parts = parts;
     }
 
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
 }

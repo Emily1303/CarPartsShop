@@ -9,28 +9,30 @@
   </header>
 
   <main>
-    <form th:action="@{/add-part}"
+    <form th:action="@{/parts/add}"
           th:method="post"
+          th:object="${addPartDto}"
           class="main-form mx-auto col-md-12 d-flex flex-column justify-content-center">
       <div class="row">
         <div class="form-group col-md-6 mb-3">
           <label for="brandName" class="text-dark font-weight-bold">Brand name</label>
-
           <input id="brandName"
+                 th:field="*{brandName}"
                  name="brandName" type="text" class="form-control border-danger"
                  placeholder="Brand name"/>
-          <p
-             class="errors text-danger">
+          <p th:if="${#fields.hasErrors('brandName')}"
+             class="errors text-danger" th:errors="*{brandName}">
           </p>
         </div>
 
         <div class="form-group col-md-6 mb-3">
           <label for="modelName" class="text-dark font-weight-bold">Model name</label>
           <input id="modelName"
+                 th:field="*{modelName}"
                  name="modelName" type="text" class="form-control"
                  placeholder="Model name"/>
-          <p
-             class="errors alert alert-danger">
+          <p th:if="${#fields.hasErrors('modelName')}"
+             class="errors text-danger" th:errors="*{modelName}">
           </p>
         </div>
       </div>
@@ -39,65 +41,143 @@
         <div class="form-group col-md-6 mb-3">
           <label for="submodelName" class="text-dark font-weight-bold">Submodel name</label>
           <input id="submodelName"
+                 th:field="*{submodelName}"
                  name="submodelName" type="text" class="form-control"
                  placeholder="Submodel Name"/>
-          <p
-             class="errors alert alert-danger">
+          <p th:if="${#fields.hasErrors('submodelName')}"
+             class="errors text-danger" th:errors="*{submodelName}">
           </p>
         </div>
 
         <div class="form-group col-md-6 mb-3">
           <label for="engine" class="text-dark font-weight-bold">Engine</label>
           <input id="engine"
+                 th:field="*{engine}"
                  name="engine" type="text" class="form-control"
                  placeholder="Engine"/>
-          <p
-             class="errors alert alert-danger">
+          <p th:if="${#fields.hasErrors('engine')}"
+             class="errors text-danger" th:errors="*{engine}">
           </p>
         </div>
       </div>
 
       <div class="row">
+        <div class="form-group col-md-6 mb-3">
+          <label for="engineCode" class="text-dark font-weight-bold">Engine code</label>
+          <input id="engineCode"
+                 th:field="*{engineCode}"
+                 name="engineCode" type="text" class="form-control"
+                 placeholder="Engine code"/>
+          <p th:if="${#fields.hasErrors('engineCode')}"
+             class="errors text-danger" th:errors="*{engineCode}">
+          </p>
+        </div>
+
         <div class="form-group col-md-6 mb-3">
           <label for="horsePower" class="text-dark font-weight-bold">Horse power</label>
+
           <input id="horsePower"
-                 name="horsePower" type="text" class="form-control"
+                 th:field="*{horsePower}"
+                 name="horsePower" type="text" class="form-control border-danger"
                  placeholder="Horse power"/>
-          <p
-             class="errors alert alert-danger">
-          </p>
-        </div>
-
-        <div class="form-group col-md-6 mb-3">
-          <label for="year" class="text-dark font-weight-bold">Year</label>
-
-          <input id="year"
-                 name="year" type="text" class="form-control border-danger"
-                 placeholder="Year"/>
-          <p
-                  class="errors text-danger">
+          <p th:if="${#fields.hasErrors('horsePower')}"
+                  class="errors text-danger" th:errors="*{horsePower}">
           </p>
         </div>
       </div>
 
       <div class="row">
+        <div class="form-group col-md-6 mb-3">
+          <label for="year" class="text-dark font-weight-bold">Year</label>
+          <input id="year"
+                 th:field="*{year}"
+                 name="year" type="text" class="form-control"
+                 placeholder="Year"/>
+          <p th:if="${#fields.hasErrors('year')}"
+                  class="errors text-danger" th:errors="*{year}">
+          </p>
+        </div>
+
         <div class="form-group col-md-6 mb-3">
           <label for="fuel" class="text-dark font-weight-bold">Fuel</label>
           <input id="fuel"
+                 th:field="*{fuel}"
                  name="fuel" type="text" class="form-control"
                  placeholder="Fuel"/>
-          <p
-                  class="errors alert alert-danger">
+          <p th:if="${#fields.hasErrors('fuel')}"
+             class="errors text-danger" th:errors="*{fuel}">
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6 mb-3">
+          <label for="partName" class="text-dark font-weight-bold">Part name</label>
+          <input id="partName"
+                 th:field="*{partName}"
+                 name="partName" type="text" class="form-control"
+                 placeholder="Part name"/>
+          <p th:if="${#fields.hasErrors('partName')}"
+             class="errors text-danger" th:errors="*{partName}">
           </p>
         </div>
 
         <div class="form-group col-md-6 mb-3">
-          <label for="partName" class="text-dark font-weight-bold">Part name</label>
-          <input id="partName"
-                 name="partName" type="text" class="form-control"
-                 placeholder="Part name"/>
-          <p
-                  class="errors alert alert-danger">
+          <label for="groupName" class="text-dark font-weight-bold">Group name</label>
+          <input id="groupName"
+                 th:field="*{groupName}"
+                 name="groupName" type="text" class="form-control"
+                 placeholder="Group name"/>
+          <p th:if="${#fields.hasErrors('groupName')}"
+             class="errors text-danger" th:errors="*{groupName}">
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6 mb-3">
+          <label for="kind" class="text-dark font-weight-bold">Kind</label>
+          <input id="kind"
+                 th:field="*{kind}"
+                 name="kind" type="text" class="form-control"
+                 placeholder="Kind"/>
+          <p th:if="${#fields.hasErrors('kind')}"
+             class="errors text-danger" th:errors="*{kind}">
+          </p>
+        </div>
+
+        <div class="form-group col-md-6 mb-3">
+          <label for="manufacturer" class="text-dark font-weight-bold">Manufacturer</label>
+          <input id="manufacturer"
+                 th:field="*{manufacturer}"
+                 name="manufacturer" type="text" class="form-control"
+                 placeholder="Manufacturer"/>
+          <p th:if="${#fields.hasErrors('manufacturer')}"
+             class="errors text-danger" th:errors="*{manufacturer}">
+          </p>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-md-6 mb-3">
+          <label for="serialNumber" class="text-dark font-weight-bold">Serial Number</label>
+          <input id="serialNumber"
+                 th:field="*{serialNumber}"
+                 name="serialNumber" type="text" class="form-control"
+                 placeholder="Serial number"/>
+          <p th:if="${#fields.hasErrors('serialNumber')}"
+             class="errors text-danger" th:errors="*{serialNumber}">
+          </p>
+        </div>
+
+        <div class="form-group col-md-6 mb-3">
+          <label for="price" class="text-dark font-weight-bold">Price</label>
+          <input id="price"
+                 th:field="*{price}"
+                 name="price" type="text" class="form-control"
+                 placeholder="Price"/>
+          <p th:if="${#fields.hasErrors('price')}"
+             class="errors text-danger" th:errors="*{price}">
           </p>
         </div>
       </div>

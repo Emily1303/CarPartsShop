@@ -6,6 +6,7 @@ import jakarta.validation.constraints.Size;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.UUID;
 
 @Entity
 @Table(name = "models")
@@ -25,6 +26,11 @@ public class Model extends BaseEntity {
 
     @OneToMany(mappedBy = "model")
     private Set<Submodel> submodels;
+
+    @NotNull
+    @GeneratedValue(strategy = GenerationType.UUID)
+    @Column(unique = true)
+    private UUID uuid;
 
     public Model() {
         this.submodels  = new HashSet<>();
@@ -46,11 +52,20 @@ public class Model extends BaseEntity {
         this.brand = brand;
     }
 
-    public Set<Submodel> getSubModels() {
+    public Set<Submodel> getSubmodels() {
         return submodels;
     }
 
-    public void setSubModels(Set<Submodel> subModels) {
-        this.submodels = subModels;
+    public void setSubmodels(Set<Submodel> submodels) {
+        this.submodels = submodels;
     }
+
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
 }
