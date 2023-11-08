@@ -21,9 +21,8 @@ public class UserProfileController {
         this.currentUser = currentUser;
     }
 
-//    the uuid does not work
-    @GetMapping("/profile")
-    public String profile() {
+    @GetMapping("/{uuid}/profile")
+    public String profile(@PathVariable String uuid) {
         if (!currentUser.isLogged()) {
             return "redirect:/login";
         }

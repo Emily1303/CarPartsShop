@@ -19,7 +19,6 @@ public class HomeController {
         return "index";
     }
 
-//    the home page is not ready - the uuid does not work
     @GetMapping("/{uuid}/home")
     public String homePage(@PathVariable("uuid") String uuid) {
         if (!currentUser.isLogged()) {

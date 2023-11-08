@@ -1,5 +1,6 @@
 package org.softuni.carpartsshop.services.impl;
 
+import org.softuni.carpartsshop.models.dtos.AddCarDto;
 import org.softuni.carpartsshop.models.dtos.AddPartDto;
 import org.softuni.carpartsshop.models.entities.Brand;
 import org.softuni.carpartsshop.models.entities.Model;
@@ -22,15 +23,15 @@ public class ModelServiceImpl implements ModelService {
     }
 
     @Override
-    public Model addModel(AddPartDto addPartDto, Brand brand) {
-        Optional<Model> byModelName = modelRepository.findByModelName(addPartDto.modelName());
+    public Model addModel(AddCarDto addCarDto, Brand brand) {
+        Optional<Model> byModelName = modelRepository.findByModelName(addCarDto.modelName());
 
         if (byModelName.isPresent()) {
              return byModelName.get();
         }
 
         Model newModel = new Model();
-        newModel.setModelName(addPartDto.modelName());
+        newModel.setModelName(addCarDto.modelName());
         newModel.setBrand(brand);
         newModel.setUuid(UUID.randomUUID());
 

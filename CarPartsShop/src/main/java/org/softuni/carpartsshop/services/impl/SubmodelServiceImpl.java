@@ -1,5 +1,6 @@
 package org.softuni.carpartsshop.services.impl;
 
+import org.softuni.carpartsshop.models.dtos.AddCarDto;
 import org.softuni.carpartsshop.models.dtos.AddPartDto;
 import org.softuni.carpartsshop.models.entities.Model;
 import org.softuni.carpartsshop.models.entities.Submodel;
@@ -21,21 +22,21 @@ public class SubmodelServiceImpl implements SubmodelService {
     }
 
     @Override
-    public Submodel addSubmodel(AddPartDto addPartDto, Model model) {
+    public Submodel addSubmodel(AddCarDto addCarDto, Model model) {
         Optional<Submodel> bySubmodelName =
-                submodelRepository.findBySubmodelName(addPartDto.submodelName());
+                submodelRepository.findBySubmodelName(addCarDto.submodelName());
 
         if (bySubmodelName.isPresent()) {
             return bySubmodelName.get();
         }
 
         Submodel newSubmodel = new Submodel();
-        newSubmodel.setSubmodelName(addPartDto.submodelName());
-        newSubmodel.setEngine(addPartDto.engine());
-        newSubmodel.setEngineCode(addPartDto.engineCode());
-        newSubmodel.setHorsePower(addPartDto.horsePower());
-        newSubmodel.setYear(addPartDto.year());
-        newSubmodel.setFuel(FuelsEnum.valueOf(addPartDto.fuel()));
+        newSubmodel.setSubmodelName(addCarDto.submodelName());
+        newSubmodel.setEngine(addCarDto.engine());
+        newSubmodel.setEngineCode(addCarDto.engineCode());
+        newSubmodel.setHorsePower(addCarDto.horsePower());
+        newSubmodel.setYear(addCarDto.year());
+        newSubmodel.setFuel(FuelsEnum.valueOf(addCarDto.fuel()));
         newSubmodel.setUuid(UUID.randomUUID());
         newSubmodel.setModel(model);
 

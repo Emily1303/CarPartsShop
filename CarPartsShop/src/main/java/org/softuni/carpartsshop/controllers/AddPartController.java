@@ -14,14 +14,10 @@ import org.softuni.carpartsshop.util.CurrentUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("/parts/add")
 public class AddPartController {
 
     private final CurrentUser currentUser;
@@ -43,8 +39,8 @@ public class AddPartController {
         this.brandService = brandService;
     }
 
-    @GetMapping
-    public String addPart(Model model) {
+    @GetMapping("/{uuid}/add/parts")
+    public String addPart(Model model, @PathVariable String uuid) {
         if (!currentUser.isLogged()) {
             return "redirect:/login";
         }
@@ -56,38 +52,20 @@ public class AddPartController {
         return "add-parts";
     }
 
-    @ModelAttribute
-    public FuelsEnum[] fuels() {
-        return FuelsEnum.values();
-    }
-
-    @PostMapping()
+    @PostMapping("/{uuid}/add/parts")
     public String addPart(@Valid AddPartDto addPartDto, BindingResult bindingResult,
-                          RedirectAttributes rAttr) {
+                          RedirectAttributes rAttr, @PathVariable String uuid) {
 
         if (bindingResult.hasErrors()) {
             rAttr.addFlashAttribute("addPartDto", addPartDto);
             rAttr.addFlashAttribute("org.springframework.validation.BindingResult.addPartDto",
                     bindingResult);
 
-            return "redirect:/parts/add";
+            return "redirect:add/parts";
         }
-
-        Brand brand = brandService.addBrand(addPartDto);
-        org.softuni.carpartsshop.models.entities.Model model = modelService.addModel(addPartDto, brand);
-
-        if (!brand.getModels().contains(model)) {
-            brand.getModels().add(model);
-        }
-
-        Submodel submodel = submodelService.addSubmodel(addPartDto, model);
-
-        if (!model.getSubmodels().contains(submodel)) {
-            model.getSubmodels().add(submodel);
-        }
-
-        Part part = partService.addPart(addPartDto, submodel);
-        submodel.getParts().add(part);
+//
+//        Part part = partService.addPart(addPartDto, submodel);
+//        submodel.getParts().add(part);
 
         return "redirect:/home";
     }
