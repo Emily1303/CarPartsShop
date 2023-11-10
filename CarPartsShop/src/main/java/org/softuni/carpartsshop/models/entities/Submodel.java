@@ -43,6 +43,10 @@ public class Submodel extends BaseEntity {
     @Column
     private FuelsEnum fuel;
 
+    @NotNull
+    @Column(name = "submodel_image")
+    private String submodelImage;
+
     @ManyToMany
     private List<Part> parts;
 
@@ -126,4 +130,13 @@ public class Submodel extends BaseEntity {
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
+
+    public String getSubmodelImage() {
+        return submodelImage;
+    }
+
+    public void setSubmodelImage(String submodelImage) {
+        this.submodelImage = submodelImage;
+    }
+
 }

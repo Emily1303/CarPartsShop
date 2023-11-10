@@ -1,6 +1,7 @@
 package org.softuni.carpartsshop.models.entities;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
@@ -56,4 +57,5 @@ public class Brand extends BaseEntity {
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
     }
+
 }

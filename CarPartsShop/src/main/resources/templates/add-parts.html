@@ -9,7 +9,7 @@
   </header>
 
   <main>
-    <form th:action="@{/add/parts}"
+    <form th:action="@{/{uuid}/add/parts(uuid=${@currentUser.getUuid()})}"
           th:method="post"
           th:object="${addPartDto}"
           class="main-form mx-auto col-md-12 d-flex flex-column justify-content-center">

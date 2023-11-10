@@ -11,6 +11,7 @@ public record AddCarDto(
         String modelName,
         @NotNull @Size(min = 1, max = 30, message = "The name of the submodel must be between 3 and 30 symbols!")
         String submodelName,
+        @NotNull String submodelImage,
         @NotNull @Size(min = 3, max = 10, message = "The engine must be between 3 and 10 symbols!")
         String engine,
         @NotNull String engineCode,
@@ -22,6 +23,6 @@ public record AddCarDto(
 
     public static AddCarDto construct() {
         return new AddCarDto(null, null, null, null, null,
-                null, null, null);
+                null, null, null, null);
     }
 }
