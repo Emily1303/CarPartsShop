@@ -17,8 +17,8 @@
         <label for="brandName" class="text-dark font-weight-bold">Brand name</label>
         <input id="brandName"
                th:field="*{brandName}"
-               name="brandName" type="text" class="form-control border-danger"
-               placeholder="Brand name"/>
+               name="brandName" type="text" class="form-control"
+               placeholder="Brand name" required/>
         <p th:if="${#fields.hasErrors('brandName')}"
            class="errors text-danger" th:errors="*{brandName}">
         </p>
@@ -29,7 +29,7 @@
         <input id="modelName"
                th:field="*{modelName}"
                name="modelName" type="text" class="form-control"
-               placeholder="Model name"/>
+               placeholder="Model name" required/>
         <p th:if="${#fields.hasErrors('modelName')}"
            class="errors text-danger" th:errors="*{modelName}">
         </p>
@@ -42,7 +42,7 @@
         <input id="submodelName"
                th:field="*{submodelName}"
                name="submodelName" type="text" class="form-control"
-               placeholder="Submodel Name"/>
+               placeholder="Submodel Name" required/>
         <p th:if="${#fields.hasErrors('submodelName')}"
            class="errors text-danger" th:errors="*{submodelName}">
         </p>
@@ -53,7 +53,7 @@
         <input id="submodelImage"
                th:field="*{submodelImage}"
                name="submodelImage" type="text" class="form-control"
-               placeholder="Image of the submodel"/>
+               placeholder="Image of the submodel" required/>
         <p th:if="${#fields.hasErrors('submodelImage')}"
            class="errors text-danger" th:errors="*{submodelImage}">
         </p>

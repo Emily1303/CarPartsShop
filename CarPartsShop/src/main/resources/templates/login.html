@@ -17,10 +17,10 @@
                     <label for="email" class="text-dark font-weight-bold">Email</label>
                     <input  id="email"
                             th:field="*{email}"
-                            th:errorclass="is-invalid"
                             name="email" type="text" class="form-control"
-                            placeholder="Email"/>
-                    <p class="invalid-feedback errors alert alert-danger">
+                            placeholder="Email" required/>
+                    <p th:if="${#fields.hasErrors('email')}"
+                            class="text-danger errors" th:errors="*{email}">
                         Wrong email or password!
                     </p>
                 </div>
@@ -29,10 +29,10 @@
                     <label for="password" class="text-dark font-weight-bold">Password</label>
                     <input id="password"
                            th:field="*{password}"
-                           th:errorclass="is-invalid"
                            name="password" type="password" class="form-control"
-                           placeholder="Password"/>
-                    <p class="invalid-feedback errors alert alert-danger">
+                           placeholder="Password" required/>
+                    <p th:if="${#fields.hasErrors('password')}"
+                            class="errors text-danger" th:errors="*{password}">
                         Wrong email or password!
                     </p>
                 </div>

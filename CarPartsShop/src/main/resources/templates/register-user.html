@@ -11,17 +11,19 @@
     <form th:action="@{/register}"
           th:method="post"
           th:object="${registerDto}"
-          class="main-form mx-auto col-md-12 d-flex flex-column justify-content-center">
+          class="main-form mx-auto col-md-12 d-flex flex-column
+          justify-content-center">
         <div class="row">
-            <div class="form-group col-md-6 mb-3">
+            <div class="form-group col-md-6 mb-3 position-relative">
                 <label for="firstName" class="text-dark font-weight-bold">First name</label>
 
                 <input id="firstName"
                        th:field="*{firstName}"
-                       name="firstName" type="text" class="form-control border-danger"
-                       placeholder="First name"/>
+                       name="firstName" type="text" class="form-control"
+                       placeholder="First name"
+                       required/>
                 <p th:if="${#fields.hasErrors('firstName')}"
-                   class="errors text-danger" th:errors="*{firstName}">
+                    class="errors text-danger" th:errors="*{firstName}">Error
                 </p>
             </div>
 
@@ -30,9 +32,9 @@
                 <input id="lastName"
                        th:field="*{lastName}"
                        name="lastName" type="text" class="form-control"
-                       placeholder="Last name"/>
+                       placeholder="Last name" required/>
                 <p th:if="${#fields.hasErrors('lastName')}"
-                   class="errors alert alert-danger" th:errors="*{lastName}">
+                   class="errors text-danger" th:errors="*{lastName}">
                 </p>
             </div>
         </div>
@@ -43,9 +45,9 @@
                 <input id="email"
                        th:field="*{email}"
                        name="email" type="text" class="form-control"
-                       placeholder="Email"/>
+                       placeholder="Email" required/>
                 <p th:if="${#fields.hasErrors('email')}"
-                   class="errors alert alert-danger" th:errors="*{email}">
+                   class="errors text-danger" th:errors="*{email}">
                 </p>
             </div>
 
@@ -54,10 +56,9 @@
                 <input id="password"
                        th:field="*{password}"
                        name="password" type="password" class="form-control"
-                       placeholder="Password"/>
+                       placeholder="Password" required/>
                 <p th:if="${#fields.hasErrors('password')}"
-                   class="errors alert alert-danger" th:errors="*{password}">
-                </p>
+                        class="errors text-danger" th:errors="*{password}"></p>
             </div>
         </div>
 
@@ -67,9 +68,9 @@
                 <input id="confirmPassword"
                        th:field="*{confirmPassword}"
                        name="confirmPassword" type="password" class="form-control"
-                       placeholder="Confirm password"/>
+                       placeholder="Confirm password" required/>
                 <p th:if="${#fields.hasErrors('confirmPassword')}"
-                   class="errors alert alert-danger" th:errors="*{confirmPassword}">
+                   class="errors text-danger" th:errors="*{confirmPassword}">
                 </p>
             </div>
         </div>
