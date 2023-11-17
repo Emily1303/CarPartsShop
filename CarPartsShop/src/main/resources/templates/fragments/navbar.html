@@ -1,48 +1,48 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <body>
-    <header th:fragment="navbar">
-      <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
+<header th:fragment="navbar">
+    <nav class="navbar navbar-expand-lg bg-dark navbar-dark">
         <div class="collapse navbar-collapse">
-          <a class="navbar-brand text-white brand" th:href="@{/}">
-            C<i class="fa-solid fa-gear"></i>rP<i class="fa-solid fa-gear"></i>rts
-          </a>
-          <ul class="navbar-nav mr-auto justify-content-between ul-style">
-            <li class="nav-item" th:if="${@currentUser.isLogged()}">
-              <a class="nav-link text-white"
-                 th:href="@{/{uuid}/home(uuid=${@currentUser.getUuid()})}">Home</a>
-            </li>
+            <a class="navbar-brand text-white brand" th:href="@{/}">
+                C<i class="fa-solid fa-gear"></i>rP<i class="fa-solid fa-gear"></i>rts
+            </a>
+            <ul class="navbar-nav mr-auto justify-content-between ul-style">
+                <li class="nav-item" th:if="${@currentUser.isLogged()}">
+                    <a class="nav-link text-white"
+                       th:href="@{/{uuid}/home(uuid=${@currentUser.getUuid()})}">Home</a>
+                </li>
 
-            <li class="nav-item" th:if="${@currentUser.isLogged()}">
-              <a class="nav-link text-white"
-                 th:href="@{/{uuid}/add/parts(uuid=${@currentUser.getUuid()})}">Add Part</a>
-            </li>
+                <li class="nav-item" th:if="${@currentUser.isLogged()}">
+                    <a class="nav-link text-white"
+                       th:href="@{/{uuid}/add/parts(uuid=${@currentUser.getUuid()})}">Add Part</a>
+                </li>
 
-            <li class="nav-item" th:if="${@currentUser.isLogged()}">
-              <a class="nav-link text-white"
-                 th:href="@{/{uuid}/add/car(uuid=${@currentUser.getUuid()})}">Add Car</a>
-            </li>
+                <li class="nav-item" th:if="${@currentUser.isLogged()}">
+                    <a class="nav-link text-white"
+                       th:href="@{/{uuid}/add/car(uuid=${@currentUser.getUuid()})}">Add Car</a>
+                </li>
 
-            <li class="nav-item" th:unless="${@currentUser.isLogged()}">
-              <a class="nav-link text-white" th:href="@{/register}">Registration</a>
-            </li>
+                <li class="nav-item" th:unless="${@currentUser.isLogged()}">
+                    <a class="nav-link text-white" th:href="@{/register}">Registration</a>
+                </li>
 
-            <li class="nav-item" th:unless="${@currentUser.isLogged()}">
-              <a class="nav-link text-white" th:href="@{/login}">Login</a>
-            </li>
+                <li class="nav-item" th:unless="${@currentUser.isLogged()}">
+                    <a class="nav-link text-white" th:href="@{/login}">Login</a>
+                </li>
 
-            <li class="nav-item" th:if="${@currentUser.isLogged()}">
-              <div class="form-inline my-2 my-lg-0">
-                <a class="logged-user text-primary"
-                   th:href="@{/{uuid}/profile(uuid=${@currentUser.getUuid()})}">
-                  Welcome, <th:block th:text="${@currentUser.getFullName()}"></th:block>
-                </a>
-                <a class="nav-link" th:href="@{/logout}">Logout</a>
-              </div>
-            </li>
-          </ul>
+                <li class="nav-item" th:if="${@currentUser.isLogged()}">
+                    <div class="form-inline my-2 my-lg-0">
+                        <a class="logged-user text-primary"
+                           th:href="@{/{uuid}/profile(uuid=${@currentUser.getUuid()})}">
+                            <th:block th:text="${@currentUser.getFullName()}"></th:block>
+                        </a>
+                        <a class="nav-link" th:href="@{/logout}">Logout</a>
+                    </div>
+                </li>
+            </ul>
         </div>
-      </nav>
-    </header>
+    </nav>
+</header>
 </body>
 </html>

@@ -3,7 +3,11 @@
 body {
     font-family: "Roboto Condensed", serif;
     font-size: 20px;
-    background-color: lightgrey;
+    background-image: linear-gradient(rgba(0,0,0,0.3),
+    rgba(0,0,0,0.6)),url("https://png.pngtree.com/background/20230522/original/pngtree-vintage-auto-parts-drawing-by-guy-picture-image_2693085.jpg");
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .navbar {
@@ -21,5 +25,18 @@ body {
 }
 
 .main-form {
-    padding: 40px 50px;
+    padding: 30px 40px 30px 40px;
+}
+
+.form-required:after {
+    content: "*";
+    color: red;
+    padding-left: 3px;
+    font-size: 13px;
+    line-height: 5px;
+}
+
+.inner-container {
+    background-color: lightgrey;
+    margin-top: 60px;
 }
