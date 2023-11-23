@@ -31,7 +31,7 @@ public class Submodel extends BaseEntity {
     private String engineCode;
 
     @NotNull
-    @Column(name = "horse_power", unique = true)
+    @Column(name = "horse_power")
     private Integer horsePower;
 
     @NotNull

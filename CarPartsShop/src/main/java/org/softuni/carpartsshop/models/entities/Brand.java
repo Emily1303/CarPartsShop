@@ -18,9 +18,13 @@ import java.util.UUID;
 public class Brand extends BaseEntity {
 
     @NotNull
-    @Size(min = 3, max = 20, message = "The brand's name must be between 3 and 20 symbols!")
+    @Size(min = 2, max = 20, message = "The brand's name must be between 2 and 20 symbols!")
     @Column(name = "brand_name", unique = true)
     private String brandName;
+
+    @NotNull
+    @Column(name = "brand_image")
+    private String brandImage;
 
     @OneToMany(mappedBy = "brand", fetch = FetchType.EAGER)
     private Set<Model> models;
@@ -40,6 +44,14 @@ public class Brand extends BaseEntity {
 
     public void setBrandName(String brandName) {
         this.brandName = brandName;
+    }
+
+    public String getBrandImage() {
+        return brandImage;
+    }
+
+    public void setBrandImage(String brandImage) {
+        this.brandImage = brandImage;
     }
 
     public Set<Model> getModels() {

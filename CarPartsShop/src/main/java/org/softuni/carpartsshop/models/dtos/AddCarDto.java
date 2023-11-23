@@ -5,8 +5,9 @@ import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 public record AddCarDto(
-        @NotNull @Size(min = 3, max = 30, message = "The name of the brand must be between 3 and 30 symbols!")
+        @NotNull @Size(min = 2, max = 30, message = "The name of the brand must be between 2 and 30 symbols!")
         String brandName,
+        String brandImage,
         @NotNull @Size(min = 3, max = 30, message = "The name of the model must be between 3 and 30 symbols!")
         String modelName,
         @NotNull @Size(min = 1, max = 30, message = "The name of the submodel must be between 3 and 30 symbols!")
@@ -23,6 +24,6 @@ public record AddCarDto(
 
     public static AddCarDto construct() {
         return new AddCarDto(null, null, null, null, null,
-                null, null, null, null);
+                null, null, null, null, null);
     }
 }
