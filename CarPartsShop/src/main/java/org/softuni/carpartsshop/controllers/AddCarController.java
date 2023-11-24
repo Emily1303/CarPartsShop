@@ -26,16 +26,13 @@ public class AddCarController {
 
     private BrandService brandService;
 
-    private BrandRepository brandRepository;
-
     private ModelService modelService;
 
     private SubmodelService submodelService;
 
-    public AddCarController(CurrentUser currentUser, BrandService brandService, BrandRepository brandRepository, ModelService modelService, SubmodelService submodelService) {
+    public AddCarController(CurrentUser currentUser, BrandService brandService, ModelService modelService, SubmodelService submodelService) {
         this.currentUser = currentUser;
         this.brandService = brandService;
-        this.brandRepository = brandRepository;
         this.modelService = modelService;
         this.submodelService = submodelService;
     }
@@ -50,6 +47,9 @@ public class AddCarController {
         if (!model.containsAttribute("addCarDto")) {
             model.addAttribute("addCarDto", AddCarDto.construct());
         }
+
+        HomeDto homeDto = brandService.getBrandsForHomePage();
+        model.addAttribute("homeDto", homeDto);
 
         return "add-car";
     }

@@ -5,151 +5,194 @@
 
 <body>
 <main>
-  <nav th:replace="~{fragments/navbar}">
-  </nav>
+    <nav th:replace="~{fragments/navbar}">
+    </nav>
 
-  <div class="container">
-    <div class="inner-container">
-      <form th:action="@{/{uuid}/add/car(uuid=${@currentUser.getUuid()})}"
-            th:method="post"
-            th:object="${addCarDto}"
-            class="main-form mx-auto col-md-12 d-flex flex-column justify-content-center">
-        <div class="row">
-          <div class="form-group col-md-6 mb-3">
-            <label for="brandName" class="text-dark font-weight-bold form-required">Brand name</label>
-            <input id="brandName"
-                   th:field="*{brandName}"
-                   name="brandName" type="text" class="form-control"
-                   placeholder="Brand name" required/>
-            <p th:if="${#fields.hasErrors('brandName')}"
-               class="errors text-danger" th:errors="*{brandName}">
-            </p>
-          </div>
+    <div class="container">
+        <div class="inner-container">
+            <form th:action="@{/{uuid}/add/car(uuid=${@currentUser.getUuid()})}"
+                  th:method="post"
+                  th:object="${addCarDto}"
+                  class="main-form mx-auto col-md-12 d-flex flex-column justify-content-center">
+                <div class="row">
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="brandName" class="text-dark font-weight-bold form-required">Brand name</label>
+                        <select id="brandName"
+                                th:field="*{brandName}"
+                                class="form-control">
+                            <option value="">- Select brand name -</option>
+                            <option th:each="brand : ${homeDto.brandDtoList}"
+                                    th:text="${brand.brandName}"
+                                    th:value="${brand.brandName}">
+                            </option>
+                        </select>
+                        <p th:if="${#fields.hasErrors('brandName')}"
+                           class="errors text-danger" th:errors="*{brandName}">
+                        </p>
+                    </div>
 
-          <div class="form-group col-md-6 mb-3">
-            <label for="brandImage" class="text-dark font-weight-bold form-required">Image of the brand</label>
-            <input id="brandImage"
-                   th:field="*{brandImage}"
-                   name="brandImage" type="text" class="form-control"
-                   placeholder="Brand image" required/>
-            <p th:if="${#fields.hasErrors('brandImage')}"
-               class="errors text-danger" th:errors="*{brandImage}">
-            </p>
-          </div>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="modelName" class="text-dark font-weight-bold form-required">Model name</label>
+                        <input id="modelName"
+                               th:field="*{modelName}"
+                               name="modelName" type="text" class="form-control"
+                               placeholder="Model name" required/>
+                        <p th:if="${#fields.hasErrors('modelName')}"
+                           class="errors text-danger" th:errors="*{modelName}">
+                        </p>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="submodelName" class="text-dark font-weight-bold form-required">Submodel name</label>
+                        <input id="submodelName"
+                               th:field="*{submodelName}"
+                               name="submodelName" type="text" class="form-control"
+                               placeholder="Submodel Name" required/>
+                        <p th:if="${#fields.hasErrors('submodelName')}"
+                           class="errors text-danger" th:errors="*{submodelName}">
+                        </p>
+                    </div>
+
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="submodelImage" class="text-dark font-weight-bold form-required">Image of the
+                            submodel</label>
+                        <input id="submodelImage"
+                               th:field="*{submodelImage}"
+                               name="submodelImage" type="text" class="form-control"
+                               placeholder="Image of the submodel" required/>
+                        <p th:if="${#fields.hasErrors('submodelImage')}"
+                           class="errors text-danger" th:errors="*{submodelImage}">
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="engine" class="text-dark font-weight-bold form-required">Engine</label>
+                        <input id="engine"
+                               th:field="*{engine}"
+                               name="engine" type="text" class="form-control"
+                               placeholder="Engine"/>
+                        <p th:if="${#fields.hasErrors('engine')}"
+                           class="errors text-danger" th:errors="*{engine}">
+                        </p>
+                    </div>
+
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="engineCode" class="text-dark font-weight-bold form-required">Engine code</label>
+                        <input id="engineCode"
+                               th:field="*{engineCode}"
+                               name="engineCode" type="text" class="form-control"
+                               placeholder="Engine code"/>
+                        <p th:if="${#fields.hasErrors('engineCode')}"
+                           class="errors text-danger" th:errors="*{engineCode}">
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="horsePower" class="text-dark font-weight-bold form-required">Horse power</label>
+
+                        <input id="horsePower"
+                               th:field="*{horsePower}"
+                               name="horsePower" type="text" class="form-control"
+                               placeholder="Horse power"/>
+                        <p th:if="${#fields.hasErrors('horsePower')}"
+                           class="errors text-danger" th:errors="*{horsePower}">
+                        </p>
+                    </div>
+
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="year" class="text-dark font-weight-bold form-required">Year</label>
+                        <input id="year"
+                               th:field="*{year}"
+                               name="year" type="text" class="form-control"
+                               placeholder="Year"/>
+                        <p th:if="${#fields.hasErrors('year')}"
+                           class="errors text-danger" th:errors="*{year}">
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="fuel" class="text-dark font-weight-bold form-required">Fuel</label>
+                        <select id="fuel"
+                                th:field="*{fuel}"
+                                class="form-control">
+                            <option value="">- Select fuel type -</option>
+                            <option th:each="f : ${fuelsEnumList}"
+                                    th:text="${f}"
+                                    th:value="${f}">
+                            </option>
+                        </select>
+                        <p th:if="${#fields.hasErrors('fuel')}"
+                           class="errors text-danger" th:errors="*{fuel}">
+                        </p>
+                    </div>
+                </div>
+
+                <div class="modal fade" id="addBrandModal" tabindex="-1" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add new brand</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="form-group col-md-8 mb-3">
+                                    <label for="nameBrand" class="text-dark font-weight-bold form-required">
+                                        Brand name</label>
+                                    <input id="nameBrand"
+                                           name="nameBrand" type="text" class="form-control"
+                                           placeholder="Brand name" required/>
+                                    <p th:if="${#fields.hasErrors('brandImage')}"
+                                       class="errors text-danger" th:errors="*{brandImage}">
+                                    </p>
+                                </div>
+
+                                <div class="form-group col-md-8 mb-3">
+                                    <label for="brandImage" class="text-dark font-weight-bold form-required">
+                                        Image of the brand</label>
+                                    <input id="brandImage"
+                                           th:field="*{brandImage}"
+                                           name="brandImage" type="text" class="form-control"
+                                           placeholder="Brand image" required/>
+                                    <p th:if="${#fields.hasErrors('brandImage')}"
+                                       class="errors text-danger" th:errors="*{brandImage}">
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-dark">Save brand</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col col-md-4 d-flex gap-4">
+                        <div class="button-holder">
+                            <input type="submit" class="btn btn-info bg-dark text-white btn-lg" value="Add car"/>
+                        </div>
+
+                        <div class="button-holder">
+                            <button type="button" class="btn bg-dark text-white btn-lg" id="btn-modal"
+                                    data-bs-toggle="modal" data-bs-target="#addBrandModal">
+                                Add new brand
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
         </div>
-
-        <div class="row">
-          <div class="form-group col-md-6 mb-3">
-            <label for="modelName" class="text-dark font-weight-bold form-required">Model name</label>
-            <input id="modelName"
-                   th:field="*{modelName}"
-                   name="modelName" type="text" class="form-control"
-                   placeholder="Model name" required/>
-            <p th:if="${#fields.hasErrors('modelName')}"
-               class="errors text-danger" th:errors="*{modelName}">
-            </p>
-          </div>
-
-          <div class="form-group col-md-6 mb-3">
-            <label for="submodelName" class="text-dark font-weight-bold form-required">Submodel name</label>
-            <input id="submodelName"
-                   th:field="*{submodelName}"
-                   name="submodelName" type="text" class="form-control"
-                   placeholder="Submodel Name" required/>
-            <p th:if="${#fields.hasErrors('submodelName')}"
-               class="errors text-danger" th:errors="*{submodelName}">
-            </p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group col-md-6 mb-3">
-            <label for="submodelImage" class="text-dark font-weight-bold form-required">Image of the submodel</label>
-            <input id="submodelImage"
-                   th:field="*{submodelImage}"
-                   name="submodelImage" type="text" class="form-control"
-                   placeholder="Image of the submodel" required/>
-            <p th:if="${#fields.hasErrors('submodelImage')}"
-               class="errors text-danger" th:errors="*{submodelImage}">
-            </p>
-          </div>
-
-          <div class="form-group col-md-6 mb-3">
-            <label for="engine" class="text-dark font-weight-bold form-required">Engine</label>
-            <input id="engine"
-                   th:field="*{engine}"
-                   name="engine" type="text" class="form-control"
-                   placeholder="Engine"/>
-            <p th:if="${#fields.hasErrors('engine')}"
-               class="errors text-danger" th:errors="*{engine}">
-            </p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group col-md-6 mb-3">
-            <label for="engineCode" class="text-dark font-weight-bold form-required">Engine code</label>
-            <input id="engineCode"
-                   th:field="*{engineCode}"
-                   name="engineCode" type="text" class="form-control"
-                   placeholder="Engine code"/>
-            <p th:if="${#fields.hasErrors('engineCode')}"
-               class="errors text-danger" th:errors="*{engineCode}">
-            </p>
-          </div>
-
-          <div class="form-group col-md-6 mb-3">
-            <label for="horsePower" class="text-dark font-weight-bold form-required">Horse power</label>
-
-            <input id="horsePower"
-                   th:field="*{horsePower}"
-                   name="horsePower" type="text" class="form-control"
-                   placeholder="Horse power"/>
-            <p th:if="${#fields.hasErrors('horsePower')}"
-               class="errors text-danger" th:errors="*{horsePower}">
-            </p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group col-md-6 mb-3">
-            <label for="year" class="text-dark font-weight-bold form-required">Year</label>
-            <input id="year"
-                   th:field="*{year}"
-                   name="year" type="text" class="form-control"
-                   placeholder="Year"/>
-            <p th:if="${#fields.hasErrors('year')}"
-               class="errors text-danger" th:errors="*{year}">
-            </p>
-          </div>
-
-          <div class="form-group col-md-6 mb-3">
-            <label for="fuel" class="text-dark font-weight-bold form-required">Fuel</label>
-            <select id="fuel"
-                    th:field="*{fuel}"
-                    class="form-control">
-              <option value="">- Select fuel type -</option>
-              <option th:each="f : ${fuelsEnumList}"
-                      th:text="${f}"
-                      th:value="${f}">
-              </option>
-            </select>
-            <p th:if="${#fields.hasErrors('fuel')}"
-               class="errors text-danger" th:errors="*{fuel}">
-            </p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="col col-md-4">
-            <div class="button-holder d-flex">
-              <input type="submit" class="btn btn-info bg-dark text-white btn-lg" value="Add car"/>
-            </div>
-          </div>
-        </div>
-      </form>
     </div>
-  </div>
 </main>
 
 </body>

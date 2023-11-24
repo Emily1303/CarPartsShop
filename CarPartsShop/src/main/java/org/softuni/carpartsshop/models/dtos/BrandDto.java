@@ -40,6 +40,14 @@ public class BrandDto {
         this.brandImage = brandImage;
     }
 
+    public UUID getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(UUID uuid) {
+        this.uuid = uuid;
+    }
+
     public Set<Model> getModels() {
         return models;
     }
