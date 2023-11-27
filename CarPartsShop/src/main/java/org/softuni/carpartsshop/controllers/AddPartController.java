@@ -1,11 +1,7 @@
 package org.softuni.carpartsshop.controllers;
 
 import jakarta.validation.Valid;
-import org.softuni.carpartsshop.models.dtos.AddPartDto;
-import org.softuni.carpartsshop.models.entities.Brand;
-import org.softuni.carpartsshop.models.entities.Part;
-import org.softuni.carpartsshop.models.entities.Submodel;
-import org.softuni.carpartsshop.models.enums.FuelsEnum;
+import org.softuni.carpartsshop.models.dtos.forLogic.AddPartDto;
 import org.softuni.carpartsshop.services.BrandService;
 import org.softuni.carpartsshop.services.ModelService;
 import org.softuni.carpartsshop.services.PartService;

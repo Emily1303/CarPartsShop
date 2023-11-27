@@ -1,7 +1,7 @@
 package org.softuni.carpartsshop.controllers;
 
 import jakarta.validation.Valid;
-import org.softuni.carpartsshop.models.dtos.LoginDto;
+import org.softuni.carpartsshop.models.dtos.forLogic.LoginDto;
 import org.softuni.carpartsshop.services.UserService;
 import org.softuni.carpartsshop.util.CurrentUser;
 import org.springframework.stereotype.Controller;

@@ -82,6 +82,10 @@ form > div:last-child {
     border-radius: 3px;
 }
 
+.buttons {
+    margin: 10px auto;
+}
+
 .modal-content {
     background-color: lightgrey;
 }

@@ -1,9 +1,9 @@
 package org.softuni.carpartsshop.services.impl;
 
-import org.softuni.carpartsshop.models.dtos.AddCarDto;
-import org.softuni.carpartsshop.models.dtos.AddPartDto;
-import org.softuni.carpartsshop.models.dtos.BrandDto;
-import org.softuni.carpartsshop.models.dtos.HomeDto;
+import org.softuni.carpartsshop.models.dtos.forLogic.AddBrandDto;
+import org.softuni.carpartsshop.models.dtos.forLogic.AddCarDto;
+import org.softuni.carpartsshop.models.dtos.forTemplates.BrandDto;
+import org.softuni.carpartsshop.models.dtos.forTemplates.HomeDto;
 import org.softuni.carpartsshop.models.entities.Brand;
 import org.softuni.carpartsshop.repositories.BrandRepository;
 import org.softuni.carpartsshop.services.BrandService;
@@ -22,20 +22,18 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public Brand addBrand(AddCarDto addCarDto) {
-        Optional<Brand> byBrandName = brandRepository.findByBrandName(addCarDto.brandName());
 
-        if (byBrandName.isPresent()) {
-            return byBrandName.get();
-        }
+        return brandRepository.findByBrandName(addCarDto.brandName()).get();
+    }
 
-        Brand newbBrand = new Brand();
-        newbBrand.setBrandName(addCarDto.brandName());
-        newbBrand.setBrandImage(addCarDto.brandImage());
-        newbBrand.setUuid(UUID.randomUUID());
+    @Override
+    public void addNewBrand(AddBrandDto addBrandDto) {
+        Brand brand = new Brand();
+        brand.setBrandName(addBrandDto.nameBrand());
+        brand.setBrandImage(addBrandDto.brandImage());
+        brand.setUuid(UUID.randomUUID());
+        brand.setModels(new HashSet<>());
 
-        brandRepository.save(newbBrand);
-
-        return newbBrand;
     }
 
     public HomeDto getBrandsForHomePage() {

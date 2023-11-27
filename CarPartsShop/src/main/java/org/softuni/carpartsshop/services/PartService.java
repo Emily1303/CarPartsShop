@@ -1,6 +1,6 @@
 package org.softuni.carpartsshop.services;
 
-import org.softuni.carpartsshop.models.dtos.AddPartDto;
+import org.softuni.carpartsshop.models.dtos.forLogic.AddPartDto;
 import org.softuni.carpartsshop.models.entities.Part;
 import org.softuni.carpartsshop.models.entities.Submodel;
 

@@ -1,6 +1,6 @@
 package org.softuni.carpartsshop.controllers;
 
-import org.softuni.carpartsshop.models.dtos.HomeDto;
+import org.softuni.carpartsshop.models.dtos.forTemplates.HomeDto;
 import org.softuni.carpartsshop.services.BrandService;
 import org.softuni.carpartsshop.util.CurrentUser;
 import org.springframework.stereotype.Controller;

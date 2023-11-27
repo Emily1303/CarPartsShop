@@ -1,7 +1,6 @@
 package org.softuni.carpartsshop.services.impl;
 
-import org.softuni.carpartsshop.models.dtos.AddCarDto;
-import org.softuni.carpartsshop.models.dtos.AddPartDto;
+import org.softuni.carpartsshop.models.dtos.forLogic.AddCarDto;
 import org.softuni.carpartsshop.models.entities.Model;
 import org.softuni.carpartsshop.models.entities.Submodel;
 import org.softuni.carpartsshop.models.enums.FuelsEnum;

@@ -15,6 +15,7 @@
                   th:object="${addCarDto}"
                   class="main-form mx-auto col-md-12 d-flex flex-column justify-content-center">
                 <div class="row">
+                    <!--                    Name of the brand-->
                     <div class="form-group col-md-6 mb-3">
                         <label for="brandName" class="text-dark font-weight-bold form-required">Brand name</label>
                         <select id="brandName"
@@ -31,6 +32,7 @@
                         </p>
                     </div>
 
+                    <!--                    Name of the model-->
                     <div class="form-group col-md-6 mb-3">
                         <label for="modelName" class="text-dark font-weight-bold form-required">Model name</label>
                         <input id="modelName"
@@ -41,10 +43,10 @@
                            class="errors text-danger" th:errors="*{modelName}">
                         </p>
                     </div>
-
                 </div>
 
                 <div class="row">
+                    <!--                    Name of the submodel-->
                     <div class="form-group col-md-6 mb-3">
                         <label for="submodelName" class="text-dark font-weight-bold form-required">Submodel name</label>
                         <input id="submodelName"
@@ -56,6 +58,7 @@
                         </p>
                     </div>
 
+                    <!--                    Image of the submodel-->
                     <div class="form-group col-md-6 mb-3">
                         <label for="submodelImage" class="text-dark font-weight-bold form-required">Image of the
                             submodel</label>
@@ -70,6 +73,7 @@
                 </div>
 
                 <div class="row">
+                    <!--                    Engine of the submodel-->
                     <div class="form-group col-md-6 mb-3">
                         <label for="engine" class="text-dark font-weight-bold form-required">Engine</label>
                         <input id="engine"
@@ -81,6 +85,7 @@
                         </p>
                     </div>
 
+                    <!--                    Engine code of the submodel-->
                     <div class="form-group col-md-6 mb-3">
                         <label for="engineCode" class="text-dark font-weight-bold form-required">Engine code</label>
                         <input id="engineCode"
@@ -94,9 +99,9 @@
                 </div>
 
                 <div class="row">
+                    <!--                    Horse power of the submodel-->
                     <div class="form-group col-md-6 mb-3">
                         <label for="horsePower" class="text-dark font-weight-bold form-required">Horse power</label>
-
                         <input id="horsePower"
                                th:field="*{horsePower}"
                                name="horsePower" type="text" class="form-control"
@@ -106,6 +111,7 @@
                         </p>
                     </div>
 
+                    <!--                    Year of the submodel-->
                     <div class="form-group col-md-6 mb-3">
                         <label for="year" class="text-dark font-weight-bold form-required">Year</label>
                         <input id="year"
@@ -119,6 +125,7 @@
                 </div>
 
                 <div class="row">
+                    <!--                    Fuel of the submodel-->
                     <div class="form-group col-md-6 mb-3">
                         <label for="fuel" class="text-dark font-weight-bold form-required">Fuel</label>
                         <select id="fuel"
@@ -135,56 +142,16 @@
                         </p>
                     </div>
                 </div>
-
-                <div class="modal fade" id="addBrandModal" tabindex="-1" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h1 class="modal-title fs-5" id="exampleModalLabel">Add new brand</h1>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="form-group col-md-8 mb-3">
-                                    <label for="nameBrand" class="text-dark font-weight-bold form-required">
-                                        Brand name</label>
-                                    <input id="nameBrand"
-                                           name="nameBrand" type="text" class="form-control"
-                                           placeholder="Brand name" required/>
-                                    <p th:if="${#fields.hasErrors('brandImage')}"
-                                       class="errors text-danger" th:errors="*{brandImage}">
-                                    </p>
-                                </div>
-
-                                <div class="form-group col-md-8 mb-3">
-                                    <label for="brandImage" class="text-dark font-weight-bold form-required">
-                                        Image of the brand</label>
-                                    <input id="brandImage"
-                                           th:field="*{brandImage}"
-                                           name="brandImage" type="text" class="form-control"
-                                           placeholder="Brand image" required/>
-                                    <p th:if="${#fields.hasErrors('brandImage')}"
-                                       class="errors text-danger" th:errors="*{brandImage}">
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-dark">Save brand</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="row">
-                    <div class="col col-md-4 d-flex gap-4">
+                    <!--Buttons in the form-->
+                    <div class="col col-md-4 d-flex gap-4 buttons">
                         <div class="button-holder">
                             <input type="submit" class="btn btn-info bg-dark text-white btn-lg" value="Add car"/>
                         </div>
 
                         <div class="button-holder">
                             <button type="button" class="btn bg-dark text-white btn-lg" id="btn-modal"
-                                    data-bs-toggle="modal" data-bs-target="#addBrandModal">
+                                data-bs-toggle="modal" data-bs-target="#addBrandModal">
                                 Add new brand
                             </button>
                         </div>
@@ -195,5 +162,30 @@
     </div>
 </main>
 
+<script type="text/javascript">
+    // $(document).ready(function() {
+    //     $('#btn-modal').on('click', function (e) {
+    //         e.preventDefault();
+    //         $('#addBrandModal').show()
+    //             .find('.modal-content').load("http://localhost:8080/d2f17acd-768f-4611-b50b-888862d04431/brand");
+    //     });
+    // });
+
+    $('#addBrandModal').on('show.bs.modal', function () {
+        $.get("/d2f17acd-768f-4611-b50b-888862d04431/brand", function (data) {
+            $('#addBrandModal').find('.modal-content').html(data);
+        })
+    });
+
+    // $('#addBrandModal').show().find('.modal-content')
+    // $('#addBrandModal').on('shown.bs.modal', function () {
+    //     var name = prompt("Brand name", "Brand name");
+    //     var image = prompt("Image of the brand", "Brand image");
+    //     $.get("/brand", function (data) {
+    //         $('#addBrandModal').find('.modal-brand').html(data);
+    //     })
+    // })
+
+</script>
 </body>
 </html>

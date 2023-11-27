@@ -1,12 +1,12 @@
 package org.softuni.carpartsshop.controllers;
 
 import jakarta.validation.Valid;
-import org.softuni.carpartsshop.models.dtos.AddCarDto;
-import org.softuni.carpartsshop.models.dtos.HomeDto;
+import org.softuni.carpartsshop.models.dtos.forLogic.AddBrandDto;
+import org.softuni.carpartsshop.models.dtos.forLogic.AddCarDto;
+import org.softuni.carpartsshop.models.dtos.forTemplates.HomeDto;
 import org.softuni.carpartsshop.models.entities.Brand;
 import org.softuni.carpartsshop.models.entities.Submodel;
 import org.softuni.carpartsshop.models.enums.FuelsEnum;
-import org.softuni.carpartsshop.repositories.BrandRepository;
 import org.softuni.carpartsshop.services.BrandService;
 import org.softuni.carpartsshop.services.ModelService;
 import org.softuni.carpartsshop.services.SubmodelService;
@@ -16,8 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
-import java.util.List;
 
 @Controller
 public class AddCarController {
@@ -54,6 +52,15 @@ public class AddCarController {
         return "add-car";
     }
 
+    @GetMapping("/{uuid}/add/car/brand")
+    public String addBrand(Model model, @PathVariable String uuid) {
+        if (!model.containsAttribute("addBrandDto")) {
+            model.addAttribute("addBrandDto", AddBrandDto.construct());
+        }
+
+        return "modal-brand";
+    }
+
     @ModelAttribute
     public FuelsEnum[] fuels() {
         return FuelsEnum.values();
@@ -86,6 +93,5 @@ public class AddCarController {
         }
 
         return "redirect:/" + uuid + "/add/parts";
-
     }
 }

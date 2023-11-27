@@ -1,4 +1,4 @@
-package org.softuni.carpartsshop.models.dtos;
+package org.softuni.carpartsshop.models.dtos.forLogic;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;

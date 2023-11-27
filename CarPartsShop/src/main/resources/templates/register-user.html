@@ -15,9 +15,9 @@
                   th:object="${registerDto}"
                   class="main-form mx-auto col-md-12 d-flex flex-column justify-content-center">
                 <div class="row">
+<!--                    First name of the user for registration-->
                     <div class="form-group col-md-6 mb-3">
                         <label for="firstName" class="text-dark font-weight-bold form-required">First name</label>
-
                         <input id="firstName"
                                th:field="*{firstName}"
                                name="firstName" type="text" class="form-control"
@@ -28,6 +28,7 @@
                         </p>
                     </div>
 
+<!--                    Last name of the user for registration-->
                     <div class="form-group col-md-6 mb-3">
                         <label for="lastName" class="text-dark font-weight-bold form-required">Last name</label>
                         <input id="lastName"
@@ -41,6 +42,7 @@
                 </div>
 
                 <div class="row">
+<!--                    Email of the user for registration-->
                     <div class="form-group col-md-6 mb-3">
                         <label for="email" class="text-dark font-weight-bold form-required">Email</label>
                         <input id="email"
@@ -52,6 +54,7 @@
                         </p>
                     </div>
 
+<!--                    Password of the user for registration-->
                     <div class="form-group col-md-6 mb-3">
                         <label for="password" class="text-dark font-weight-bold form-required">Password</label>
                         <input id="password"
@@ -64,6 +67,7 @@
                 </div>
 
                 <div class="row">
+<!--                    Confirm password-->
                     <div class="form-group col-md-6 mb-3">
                         <label for="confirmPassword" class="text-dark font-weight-bold form-required">Confirm password</label>
                         <input id="confirmPassword"

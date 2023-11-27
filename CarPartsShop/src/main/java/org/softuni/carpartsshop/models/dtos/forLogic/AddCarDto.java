@@ -1,13 +1,12 @@
-package org.softuni.carpartsshop.models.dtos;
+package org.softuni.carpartsshop.models.dtos.forLogic;
 
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
 
 public record AddCarDto(
-        @NotNull @Size(min = 2, max = 30, message = "The name of the brand must be between 2 and 30 symbols!")
+        @NotNull
         String brandName,
-        String brandImage,
         @NotNull @Size(min = 3, max = 30, message = "The name of the model must be between 3 and 30 symbols!")
         String modelName,
         @NotNull @Size(min = 1, max = 30, message = "The name of the submodel must be between 3 and 30 symbols!")
@@ -18,12 +17,12 @@ public record AddCarDto(
         @NotNull String engineCode,
         @NotNull @Positive Integer horsePower,
         @NotNull String year,
-        @NotNull @Size(min = 3, max = 10, message = "The fuel must be between 3 and 10 symbols!")
+        @NotNull
         String fuel
 ) {
 
     public static AddCarDto construct() {
         return new AddCarDto(null, null, null, null, null,
-                null, null, null, null, null);
+                null, null, null, null);
     }
 }

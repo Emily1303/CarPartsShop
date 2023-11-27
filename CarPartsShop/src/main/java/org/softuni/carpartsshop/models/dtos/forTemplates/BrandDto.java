@@ -1,4 +1,4 @@
-package org.softuni.carpartsshop.models.dtos;
+package org.softuni.carpartsshop.models.dtos.forTemplates;
 
 import org.softuni.carpartsshop.models.entities.Brand;
 import org.softuni.carpartsshop.models.entities.Model;

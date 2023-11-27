@@ -1,16 +1,13 @@
 package org.softuni.carpartsshop.services.impl;
 
-import org.softuni.carpartsshop.models.dtos.AddCarDto;
-import org.softuni.carpartsshop.models.dtos.AddPartDto;
+import org.softuni.carpartsshop.models.dtos.forLogic.AddCarDto;
 import org.softuni.carpartsshop.models.entities.Brand;
 import org.softuni.carpartsshop.models.entities.Model;
-import org.softuni.carpartsshop.repositories.BrandRepository;
 import org.softuni.carpartsshop.repositories.ModelRepository;
 import org.softuni.carpartsshop.services.ModelService;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-import java.util.Set;
 import java.util.UUID;
 
 @Service

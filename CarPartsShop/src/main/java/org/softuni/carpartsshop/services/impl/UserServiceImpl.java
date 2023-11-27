@@ -1,7 +1,7 @@
 package org.softuni.carpartsshop.services.impl;
 
-import org.softuni.carpartsshop.models.dtos.LoginDto;
-import org.softuni.carpartsshop.models.dtos.RegisterDto;
+import org.softuni.carpartsshop.models.dtos.forLogic.LoginDto;
+import org.softuni.carpartsshop.models.dtos.forLogic.RegisterDto;
 import org.softuni.carpartsshop.models.entities.User;
 import org.softuni.carpartsshop.repositories.UserRepository;
 import org.softuni.carpartsshop.services.UserService;
