@@ -5,105 +5,132 @@
 </head>
 
 <body>
-  <header th:replace="~{fragments/navbar}">
-  </header>
+<header th:replace="~{fragments/navbar}">
+</header>
 
-  <main>
+<main>
     <div class="container">
-      <div class="inner-container">
-        <form th:action="@{/{uuid}/add/parts(uuid=${@currentUser.getUuid()})}"
-              th:method="post"
-              th:object="${addPartDto}"
-              class="main-form mx-auto col-md-12 d-flex flex-column justify-content-center">
+        <div class="inner-container">
+            <form th:action="@{/{uuid}/add/parts(uuid=${@currentUser.getUuid()})}"
+                  th:method="post"
+                  th:object="${addPartDto}"
+                  class="main-form mx-auto col-md-12 d-flex flex-column justify-content-center">
 
-          <div class="row">
-<!--            Name of the car part-->
-            <div class="form-group col-md-6 mb-3">
-              <label for="partName" class="text-dark font-weight-bold form-required">Part name</label>
-              <input id="partName"
-                     th:field="*{partName}"
-                     name="partName" type="text" class="form-control"
-                     placeholder="Part name"/>
-              <p th:if="${#fields.hasErrors('partName')}"
-                 class="errors text-danger" th:errors="*{partName}">
-              </p>
-            </div>
+                <div class="row">
+                    <!--              Name of the submodel-->
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="submodelName" class="text-dark font-weight-bold form-required">Submodel name</label>
+                        <input id="submodelName"
+                               th:field="*{submodelName}"
+                               name="submodelName" type="text" class="form-control"
+                               placeholder="Submodel name" required/>
+                        <p th:if="${#fields.hasErrors('submodelName')}"
+                           class="errors text-danger" th:errors="*{submodelName}">
+                        </p>
+                    </div>
 
-<!--            Name of the group of parts-->
-            <div class="form-group col-md-6 mb-3">
-              <label for="groupName" class="text-dark font-weight-bold form-required">Group name</label>
-              <input id="groupName"
-                     th:field="*{groupName}"
-                     name="groupName" type="text" class="form-control"
-                     placeholder="Group name"/>
-              <p th:if="${#fields.hasErrors('groupName')}"
-                 class="errors text-danger" th:errors="*{groupName}">
-              </p>
-            </div>
-          </div>
+                    <!--            Name of the car part-->
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="partName" class="text-dark font-weight-bold form-required">Part name</label>
+                        <input id="partName"
+                               th:field="*{partName}"
+                               name="partName" type="text" class="form-control"
+                               placeholder="Part name" required/>
+                        <p th:if="${#fields.hasErrors('partName')}"
+                           class="errors text-danger" th:errors="*{partName}">
+                        </p>
+                    </div>
+                </div>
 
-<!--          Kind of the part-->
-          <div class="row">
-            <div class="form-group col-md-6 mb-3">
-              <label for="kind" class="text-dark font-weight-bold form-required">Kind</label>
-              <input id="kind"
-                     th:field="*{kind}"
-                     name="kind" type="text" class="form-control"
-                     placeholder="Kind"/>
-              <p th:if="${#fields.hasErrors('kind')}"
-                 class="errors text-danger" th:errors="*{kind}">
-              </p>
-            </div>
+                <div class="row">
+<!--                    Image of the part-->
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="partImage" class="text-dark font-weight-bold form-required">Image of the
+                            part</label>
+                        <input id="partImage"
+                               th:field="*{partImage}"
+                               name="partImage" type="text" class="form-control"
+                               placeholder="Image of the part" required/>
+                        <p th:if="${#fields.hasErrors('partImage')}"
+                           class="errors text-danger" th:errors="*{partImage}">
+                        </p>
+                    </div>
 
-<!--            Manufacturer of the part-->
-            <div class="form-group col-md-6 mb-3">
-              <label for="manufacturer" class="text-dark font-weight-bold form-required">Manufacturer</label>
-              <input id="manufacturer"
-                     th:field="*{manufacturer}"
-                     name="manufacturer" type="text" class="form-control"
-                     placeholder="Manufacturer"/>
-              <p th:if="${#fields.hasErrors('manufacturer')}"
-                 class="errors text-danger" th:errors="*{manufacturer}">
-              </p>
-            </div>
-          </div>
+                    <!--            Name of the group of parts-->
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="groupName" class="text-dark font-weight-bold form-required">Group name</label>
+                        <input id="groupName"
+                               th:field="*{groupName}"
+                               name="groupName" type="text" class="form-control"
+                               placeholder="Group name"/>
+                        <p th:if="${#fields.hasErrors('groupName')}"
+                           class="errors text-danger" th:errors="*{groupName}">
+                        </p>
+                    </div>
+                </div>
 
-          <div class="row">
-<!--            Serial number of the part-->
-            <div class="form-group col-md-6 mb-3">
-              <label for="serialNumber" class="text-dark font-weight-bold form-required">Serial Number</label>
-              <input id="serialNumber"
-                     th:field="*{serialNumber}"
-                     name="serialNumber" type="text" class="form-control"
-                     placeholder="Serial number"/>
-              <p th:if="${#fields.hasErrors('serialNumber')}"
-                 class="errors text-danger" th:errors="*{serialNumber}">
-              </p>
-            </div>
+                <div class="row">
+                    <!--          Kind of the part-->
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="kind" class="text-dark font-weight-bold form-required">Kind</label>
+                        <input id="kind"
+                               th:field="*{kind}"
+                               name="kind" type="text" class="form-control"
+                               placeholder="Kind"/>
+                        <p th:if="${#fields.hasErrors('kind')}"
+                           class="errors text-danger" th:errors="*{kind}">
+                        </p>
+                    </div>
 
-<!--            Price of the part-->
-            <div class="form-group col-md-6 mb-3">
-              <label for="price" class="text-dark font-weight-bold form-required">Price</label>
-              <input id="price"
-                     th:field="*{price}"
-                     name="price" type="text" class="form-control"
-                     placeholder="Price"/>
-              <p th:if="${#fields.hasErrors('price')}"
-                 class="errors text-danger" th:errors="*{price}">
-              </p>
-            </div>
-          </div>
+                    <!--            Manufacturer of the part-->
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="manufacturer" class="text-dark font-weight-bold form-required">Manufacturer</label>
+                        <input id="manufacturer"
+                               th:field="*{manufacturer}"
+                               name="manufacturer" type="text" class="form-control"
+                               placeholder="Manufacturer"/>
+                        <p th:if="${#fields.hasErrors('manufacturer')}"
+                           class="errors text-danger" th:errors="*{manufacturer}">
+                        </p>
+                    </div>
+                </div>
 
-          <div class="row">
-            <div class="col col-md-4">
-              <div class="button-holder d-flex">
-                <input type="submit" class="btn btn-info bg-dark text-white btn-lg" value="Add part"/>
-              </div>
-            </div>
-          </div>
-        </form>
-      </div>
+                <div class="row">
+                    <!--            Serial number of the part-->
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="serialNumber" class="text-dark font-weight-bold form-required">Serial Number</label>
+                        <input id="serialNumber"
+                               th:field="*{serialNumber}"
+                               name="serialNumber" type="text" class="form-control"
+                               placeholder="Serial number"/>
+                        <p th:if="${#fields.hasErrors('serialNumber')}"
+                           class="errors text-danger" th:errors="*{serialNumber}">
+                        </p>
+                    </div>
+
+                    <!--            Price of the part-->
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="price" class="text-dark font-weight-bold form-required">Price</label>
+                        <input id="price"
+                               th:field="*{price}"
+                               name="price" type="text" class="form-control"
+                               placeholder="Price"/>
+                        <p th:if="${#fields.hasErrors('price')}"
+                           class="errors text-danger" th:errors="*{price}">
+                        </p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col col-md-4">
+                        <div class="button-holder d-flex">
+                            <input type="submit" class="btn btn-info bg-dark text-white btn-lg" value="Add part"/>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-  </main>
+</main>
 </body>
 </html>

@@ -34,6 +34,7 @@ public class BrandServiceImpl implements BrandService {
         brand.setUuid(UUID.randomUUID());
         brand.setModels(new HashSet<>());
 
+        brandRepository.save(brand);
     }
 
     public HomeDto getBrandsForHomePage() {

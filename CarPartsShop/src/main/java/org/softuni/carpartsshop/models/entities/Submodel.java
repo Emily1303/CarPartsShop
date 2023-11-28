@@ -11,10 +11,14 @@ import java.util.UUID;
 
 @Entity
 @Table(name = "submodels")
+@NamedEntityGraph(
+        name = "submodelsWithParts",
+        attributeNodes = @NamedAttributeNode("parts")
+)
 public class Submodel extends BaseEntity {
 
     @NotNull
-    @Size(min = 1, max = 20, message = "The model's name must be between 3 and 20 symbols!")
+    @Size(min = 1, max = 40, message = "The model's name must be between 1 and 40 symbols!")
     @Column(name = "submodel_name", unique = true)
     private String submodelName;
 
@@ -47,7 +51,12 @@ public class Submodel extends BaseEntity {
     @Column(name = "submodel_image")
     private String submodelImage;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "submodels_parts",
+            joinColumns = @JoinColumn(name = "submodel_id"),
+            inverseJoinColumns = @JoinColumn(name = "parts_id")
+    )
     private List<Part> parts;
 
     @NotNull

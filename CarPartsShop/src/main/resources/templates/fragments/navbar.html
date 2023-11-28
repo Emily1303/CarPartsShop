@@ -23,6 +23,11 @@
                        th:href="@{/{uuid}/add/car(uuid=${@currentUser.getUuid()})}">Add Car</a>
                 </li>
 
+                <li class="nav-item" th:if="${@currentUser.isLogged()}">
+                    <a class="nav-link text-white"
+                       th:href="@{/{uuid}/brand(uuid=${@currentUser.getUuid()})}">Add Brand</a>
+                </li>
+
                 <li class="nav-item" th:unless="${@currentUser.isLogged()}">
                     <a class="nav-link text-white" th:href="@{/register}">Registration</a>
                 </li>

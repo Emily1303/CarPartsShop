@@ -31,6 +31,7 @@ public class PartServiceImpl implements PartService {
         newPart.setPrice(addPartDto.price());
         newPart.setUuid(UUID.randomUUID());
         newPart.setAvailable(true);
+        newPart.setPartImage(addPartDto.partImage());
         newPart.getSubmodel().add(submodel);
 
         partRepository.save(newPart);

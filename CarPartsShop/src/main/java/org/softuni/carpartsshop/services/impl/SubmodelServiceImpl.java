@@ -1,6 +1,7 @@
 package org.softuni.carpartsshop.services.impl;
 
 import org.softuni.carpartsshop.models.dtos.forLogic.AddCarDto;
+import org.softuni.carpartsshop.models.dtos.forLogic.AddPartDto;
 import org.softuni.carpartsshop.models.entities.Model;
 import org.softuni.carpartsshop.models.entities.Submodel;
 import org.softuni.carpartsshop.models.enums.FuelsEnum;
@@ -43,4 +44,10 @@ public class SubmodelServiceImpl implements SubmodelService {
         submodelRepository.save(newSubmodel);
         return newSubmodel;
     }
+
+    @Override
+    public Submodel getSubmodel(AddPartDto addPartDto) {
+        return submodelRepository.findBySubmodelName(addPartDto.submodelName()).get();
+    }
+
 }

@@ -17,7 +17,7 @@ import java.util.UUID;
 public class Model extends BaseEntity {
 
     @NotNull
-    @Size(min = 3, max = 20, message = "The model's name must be between 3 and 20 symbols!")
+    @Size(min = 1, max = 40, message = "The model's name must be between 1 and 40 symbols!")
     @Column(name = "model_name", unique = true)
     private String modelName;
 

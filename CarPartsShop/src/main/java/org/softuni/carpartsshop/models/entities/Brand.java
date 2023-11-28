@@ -18,7 +18,7 @@ import java.util.UUID;
 public class Brand extends BaseEntity {
 
     @NotNull
-    @Size(min = 2, max = 20, message = "The brand's name must be between 2 and 20 symbols!")
+    @Size(min = 1, max = 30, message = "The brand's name must be between 1 and 30 symbols!")
     @Column(name = "brand_name", unique = true)
     private String brandName;
 

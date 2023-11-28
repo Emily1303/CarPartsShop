@@ -13,13 +13,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-public class ModalController {
+public class AddBrandController {
 
     private CurrentUser currentUser;
 
     private BrandService brandService;
 
-    public ModalController(CurrentUser currentUser, BrandService brandService) {
+    public AddBrandController(CurrentUser currentUser, BrandService brandService) {
         this.currentUser = currentUser;
         this.brandService = brandService;
     }
@@ -34,7 +34,7 @@ public class ModalController {
             model.addAttribute("addBrandDto", AddBrandDto.construct());
         }
 
-        return "modal-brand";
+        return "add-brand";
     }
 
     @PostMapping("/{uuid}/brand")
@@ -46,7 +46,7 @@ public class ModalController {
             rAttr.addFlashAttribute("org.springframework.validation.BindingResult.addBrandDto",
                     bindingResult);
 
-            return "redirect:/" + uuid + "/add-brand";
+            return "redirect:/" + uuid + "/brand";
         }
 
         brandService.addNewBrand(addBrandDto);

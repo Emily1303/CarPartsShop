@@ -7,12 +7,12 @@ import jakarta.validation.constraints.Size;
 public record AddCarDto(
         @NotNull
         String brandName,
-        @NotNull @Size(min = 3, max = 30, message = "The name of the model must be between 3 and 30 symbols!")
+        @NotNull @Size(min = 1, max = 30, message = "The name of the model must be between 1 and 30 symbols!")
         String modelName,
-        @NotNull @Size(min = 1, max = 30, message = "The name of the submodel must be between 3 and 30 symbols!")
+        @NotNull @Size(min = 1, max = 40, message = "The name of the submodel must be between 1 and 40 symbols!")
         String submodelName,
         @NotNull String submodelImage,
-        @NotNull @Size(min = 3, max = 10, message = "The engine must be between 3 and 10 symbols!")
+        @NotNull @Size(min = 1, max = 20, message = "The engine must be between 1 and 20 symbols!")
         String engine,
         @NotNull String engineCode,
         @NotNull @Positive Integer horsePower,

@@ -142,18 +142,12 @@
                         </p>
                     </div>
                 </div>
+
                 <div class="row">
-                    <!--Buttons in the form-->
-                    <div class="col col-md-4 d-flex gap-4 buttons">
+                    <!--Button in the form-->
+                    <div class="col col-md-4">
                         <div class="button-holder">
                             <input type="submit" class="btn btn-info bg-dark text-white btn-lg" value="Add car"/>
-                        </div>
-
-                        <div class="button-holder">
-                            <button type="button" class="btn bg-dark text-white btn-lg" id="btn-modal"
-                                data-bs-toggle="modal" data-bs-target="#addBrandModal">
-                                Add new brand
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -161,31 +155,5 @@
         </div>
     </div>
 </main>
-
-<script type="text/javascript">
-    // $(document).ready(function() {
-    //     $('#btn-modal').on('click', function (e) {
-    //         e.preventDefault();
-    //         $('#addBrandModal').show()
-    //             .find('.modal-content').load("http://localhost:8080/d2f17acd-768f-4611-b50b-888862d04431/brand");
-    //     });
-    // });
-
-    $('#addBrandModal').on('show.bs.modal', function () {
-        $.get("/d2f17acd-768f-4611-b50b-888862d04431/brand", function (data) {
-            $('#addBrandModal').find('.modal-content').html(data);
-        })
-    });
-
-    // $('#addBrandModal').show().find('.modal-content')
-    // $('#addBrandModal').on('shown.bs.modal', function () {
-    //     var name = prompt("Brand name", "Brand name");
-    //     var image = prompt("Image of the brand", "Brand image");
-    //     $.get("/brand", function (data) {
-    //         $('#addBrandModal').find('.modal-brand').html(data);
-    //     })
-    // })
-
-</script>
 </body>
 </html>

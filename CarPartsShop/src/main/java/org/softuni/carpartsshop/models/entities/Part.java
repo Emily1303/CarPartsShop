@@ -15,12 +15,12 @@ import java.util.UUID;
 public class Part extends BaseEntity {
 
     @NotNull
-    @Size(min = 3, max = 30, message = "The name must be between 3 and 30 symbols!")
+    @Size(min = 3, max = 60, message = "The name must be between 3 and 60 symbols!")
     @Column(name = "part_name")
     private String partName;
 
     @NotNull
-    @Size(min = 3, max = 30, message = "The group's name must be between 3 and 30 symbols!")
+    @Size(min = 1, max = 60, message = "The group's name must be between 1 and 60 symbols!")
     @Column(name = "group_name", unique = true)
     private String groupName;
 
@@ -51,7 +51,11 @@ public class Part extends BaseEntity {
     @Column(unique = true)
     private UUID uuid;
 
-    @ManyToMany(mappedBy = "parts")
+    @NotNull
+    @Column(name = "part_image")
+    private String partImage;
+
+    @ManyToMany(mappedBy = "parts", fetch = FetchType.EAGER)
     private List<Submodel> submodel;
 
     public Part() {
@@ -120,6 +124,14 @@ public class Part extends BaseEntity {
 
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
+    }
+
+    public String getPartImage() {
+        return partImage;
+    }
+
+    public void setPartImage(String partImage) {
+        this.partImage = partImage;
     }
 
     public List<Submodel> getSubmodel() {

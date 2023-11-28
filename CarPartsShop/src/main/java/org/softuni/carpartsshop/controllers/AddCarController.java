@@ -46,19 +46,11 @@ public class AddCarController {
             model.addAttribute("addCarDto", AddCarDto.construct());
         }
 
+        model.addAttribute("addBrandDto", AddBrandDto.construct());
         HomeDto homeDto = brandService.getBrandsForHomePage();
         model.addAttribute("homeDto", homeDto);
 
         return "add-car";
-    }
-
-    @GetMapping("/{uuid}/add/car/brand")
-    public String addBrand(Model model, @PathVariable String uuid) {
-        if (!model.containsAttribute("addBrandDto")) {
-            model.addAttribute("addBrandDto", AddBrandDto.construct());
-        }
-
-        return "modal-brand";
     }
 
     @ModelAttribute
@@ -68,8 +60,7 @@ public class AddCarController {
 
     @PostMapping("/{uuid}/add/car")
     public String addCar(@Valid AddCarDto addCarDto, BindingResult bindingResult,
-                         RedirectAttributes rAttr, @PathVariable String uuid,
-                         Model model) {
+                         RedirectAttributes rAttr, @PathVariable String uuid) {
 
         if (bindingResult.hasErrors()) {
             rAttr.addFlashAttribute("addCarDto", addCarDto);
