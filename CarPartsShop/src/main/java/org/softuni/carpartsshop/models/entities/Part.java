@@ -21,7 +21,7 @@ public class Part extends BaseEntity {
 
     @NotNull
     @Size(min = 1, max = 60, message = "The group's name must be between 1 and 60 symbols!")
-    @Column(name = "group_name", unique = true)
+    @Column(name = "group_name")
     private String groupName;
 
     @NotNull
@@ -55,8 +55,11 @@ public class Part extends BaseEntity {
     @Column(name = "part_image")
     private String partImage;
 
-    @ManyToMany(mappedBy = "parts", fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = Submodel.class, fetch = FetchType.EAGER)
     private List<Submodel> submodel;
+
+    @ManyToMany(targetEntity = User.class, fetch = FetchType.LAZY)
+    private List<User> boughtBy;
 
     public Part() {
         this.submodel = new ArrayList<>();
@@ -142,4 +145,11 @@ public class Part extends BaseEntity {
         this.submodel = submodel;
     }
 
+    public List<User> getBoughtBy() {
+        return boughtBy;
+    }
+
+    public void setBoughtBy(List<User> boughtBy) {
+        this.boughtBy = boughtBy;
+    }
 }

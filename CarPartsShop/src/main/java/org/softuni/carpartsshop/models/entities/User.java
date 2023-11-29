@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.UUID;
 
 @Entity
@@ -39,6 +40,9 @@ public class User extends BaseEntity {
     @GeneratedValue(strategy = GenerationType.UUID)
     @Column(unique = true)
     private UUID uuid;
+
+    @ManyToMany(targetEntity = Part.class, mappedBy = "boughtBy", fetch = FetchType.LAZY)
+    private List<Part> boughtParts;
 
     public User() {
 
@@ -90,5 +94,13 @@ public class User extends BaseEntity {
 
     public void setUuid(UUID uuid) {
         this.uuid = uuid;
+    }
+
+    public List<Part> getBoughtParts() {
+        return boughtParts;
+    }
+
+    public void setBoughtParts(List<Part> boughtParts) {
+        this.boughtParts = boughtParts;
     }
 }

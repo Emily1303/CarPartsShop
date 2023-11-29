@@ -51,12 +51,7 @@ public class Submodel extends BaseEntity {
     @Column(name = "submodel_image")
     private String submodelImage;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(
-            name = "submodels_parts",
-            joinColumns = @JoinColumn(name = "submodel_id"),
-            inverseJoinColumns = @JoinColumn(name = "parts_id")
-    )
+    @ManyToMany(targetEntity = Part.class, mappedBy = "submodel", fetch = FetchType.EAGER)
     private List<Part> parts;
 
     @NotNull

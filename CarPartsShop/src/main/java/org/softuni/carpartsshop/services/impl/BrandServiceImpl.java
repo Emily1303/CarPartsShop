@@ -46,6 +46,7 @@ public class BrandServiceImpl implements BrandService {
             brandDtoList.add(brandDto);
         }
 
-        return new HomeDto(brandDtoList);
+        return new HomeDto(brandDtoList.stream()
+                .sorted(Comparator.comparing(BrandDto::getBrandName)).toList());
     }
 }
