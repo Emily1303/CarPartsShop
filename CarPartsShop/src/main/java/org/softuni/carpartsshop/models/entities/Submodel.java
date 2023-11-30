@@ -22,7 +22,7 @@ public class Submodel extends BaseEntity {
     @Column(name = "submodel_name", unique = true)
     private String submodelName;
 
-    @ManyToOne
+    @ManyToOne()
     private Model model;
 
     @NotNull

@@ -2,6 +2,7 @@ package org.softuni.carpartsshop.controllers;
 
 import jakarta.validation.Valid;
 import org.softuni.carpartsshop.models.dtos.forLogic.AddPartDto;
+import org.softuni.carpartsshop.models.dtos.forTemplates.HomeDto;
 import org.softuni.carpartsshop.models.entities.Part;
 import org.softuni.carpartsshop.models.entities.Submodel;
 import org.softuni.carpartsshop.services.BrandService;
@@ -41,6 +42,9 @@ public class AddPartController {
         if (!model.containsAttribute("addPartDto")) {
             model.addAttribute("addPartDto", AddPartDto.construct());
         }
+
+        HomeDto homeDto = submodelService.getSubmodelsForHomePage();
+        model.addAttribute("homeDto", homeDto);
 
         return "add-parts";
     }

@@ -6,6 +6,7 @@ import org.softuni.carpartsshop.models.entities.Submodel;
 import org.softuni.carpartsshop.repositories.PartRepository;
 import org.softuni.carpartsshop.services.PartService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.UUID;
 

@@ -20,10 +20,15 @@
                     <!--              Name of the submodel-->
                     <div class="form-group col-md-6 mb-3">
                         <label for="submodelName" class="text-dark font-weight-bold form-required">Submodel name</label>
-                        <input id="submodelName"
-                               th:field="*{submodelName}"
-                               name="submodelName" type="text" class="form-control"
-                               placeholder="Submodel name" required/>
+                        <select id="submodelName"
+                                th:field="*{submodelName}"
+                                class="form-control" required>
+                            <option value="">- Select submodel name -</option>
+                            <option th:each="submodel : ${homeDto.submodelDtoList}"
+                                    th:text="${submodel.submodelName}"
+                                    th:value="${submodel.submodelName}">
+                            </option>
+                        </select>
                         <p th:if="${#fields.hasErrors('submodelName')}"
                            class="errors text-danger" th:errors="*{submodelName}">
                         </p>
@@ -62,7 +67,7 @@
                         <input id="groupName"
                                th:field="*{groupName}"
                                name="groupName" type="text" class="form-control"
-                               placeholder="Group name"/>
+                               placeholder="Group name" required/>
                         <p th:if="${#fields.hasErrors('groupName')}"
                            class="errors text-danger" th:errors="*{groupName}">
                         </p>
@@ -76,7 +81,7 @@
                         <input id="kind"
                                th:field="*{kind}"
                                name="kind" type="text" class="form-control"
-                               placeholder="Kind"/>
+                               placeholder="Kind" required/>
                         <p th:if="${#fields.hasErrors('kind')}"
                            class="errors text-danger" th:errors="*{kind}">
                         </p>
@@ -88,7 +93,7 @@
                         <input id="manufacturer"
                                th:field="*{manufacturer}"
                                name="manufacturer" type="text" class="form-control"
-                               placeholder="Manufacturer"/>
+                               placeholder="Manufacturer" required/>
                         <p th:if="${#fields.hasErrors('manufacturer')}"
                            class="errors text-danger" th:errors="*{manufacturer}">
                         </p>
@@ -102,7 +107,7 @@
                         <input id="serialNumber"
                                th:field="*{serialNumber}"
                                name="serialNumber" type="text" class="form-control"
-                               placeholder="Serial number"/>
+                               placeholder="Serial number" required/>
                         <p th:if="${#fields.hasErrors('serialNumber')}"
                            class="errors text-danger" th:errors="*{serialNumber}">
                         </p>
@@ -114,7 +119,7 @@
                         <input id="price"
                                th:field="*{price}"
                                name="price" type="text" class="form-control"
-                               placeholder="Price"/>
+                               placeholder="Price" required/>
                         <p th:if="${#fields.hasErrors('price')}"
                            class="errors text-danger" th:errors="*{price}">
                         </p>

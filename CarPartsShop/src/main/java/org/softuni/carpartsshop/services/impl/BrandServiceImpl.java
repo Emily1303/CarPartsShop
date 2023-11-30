@@ -8,8 +8,10 @@ import org.softuni.carpartsshop.models.entities.Brand;
 import org.softuni.carpartsshop.repositories.BrandRepository;
 import org.softuni.carpartsshop.services.BrandService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class BrandServiceImpl implements BrandService {
@@ -39,7 +41,7 @@ public class BrandServiceImpl implements BrandService {
 
     public HomeDto getBrandsForHomePage() {
         List<Brand> allBrands = brandRepository.getAllBrands();
-        List<BrandDto> brandDtoList = new ArrayList<>();
+        Set<BrandDto> brandDtoList = new HashSet<>();
 
         for (int i = 0; i < allBrands.size(); i++) {
             BrandDto brandDto = new BrandDto(allBrands.get(i));
@@ -47,6 +49,8 @@ public class BrandServiceImpl implements BrandService {
         }
 
         return new HomeDto(brandDtoList.stream()
-                .sorted(Comparator.comparing(BrandDto::getBrandName)).toList());
+                .sorted(Comparator.comparing(BrandDto::getBrandName))
+                .collect(Collectors.toCollection(LinkedHashSet::new)));
     }
+
 }

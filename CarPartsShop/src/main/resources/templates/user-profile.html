@@ -8,15 +8,25 @@
     <header th:replace="~{fragments/navbar}">
     </header>
 
-    <main>
-        <div class="container-fluid">
-            <h2>
-                User profile!
-            </h2>
-
-            <h3>
-                Here is the profile of user <th:block></th:block>
-            </h3>
+    <main class="section-container">
+        <div class="container">
+            <div class="inner-container">
+                <article>
+                    <header>
+                        <h1>PROFILE</h1>
+                    </header>
+                    <main>
+                        <ul class="list-unstyled">
+                            <li>
+                                <h3>Full name:</h3>
+                            </li>
+                            <li th:text="${@currentUser.getFullName()}"></li>
+                            <li><h3>Last name:</h3></li>
+                            <li th:value="${@currentUser.lastName}"></li>
+                        </ul>
+                    </main>
+                </article>
+            </div>
         </div>
     </main>
 </body>

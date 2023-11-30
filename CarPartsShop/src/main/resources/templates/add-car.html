@@ -20,7 +20,7 @@
                         <label for="brandName" class="text-dark font-weight-bold form-required">Brand name</label>
                         <select id="brandName"
                                 th:field="*{brandName}"
-                                class="form-control">
+                                class="form-control" required>
                             <option value="">- Select brand name -</option>
                             <option th:each="brand : ${homeDto.brandDtoList}"
                                     th:text="${brand.brandName}"
@@ -79,7 +79,7 @@
                         <input id="engine"
                                th:field="*{engine}"
                                name="engine" type="text" class="form-control"
-                               placeholder="Engine"/>
+                               placeholder="Engine" required/>
                         <p th:if="${#fields.hasErrors('engine')}"
                            class="errors text-danger" th:errors="*{engine}">
                         </p>
@@ -91,7 +91,7 @@
                         <input id="engineCode"
                                th:field="*{engineCode}"
                                name="engineCode" type="text" class="form-control"
-                               placeholder="Engine code"/>
+                               placeholder="Engine code" required/>
                         <p th:if="${#fields.hasErrors('engineCode')}"
                            class="errors text-danger" th:errors="*{engineCode}">
                         </p>
@@ -105,7 +105,7 @@
                         <input id="horsePower"
                                th:field="*{horsePower}"
                                name="horsePower" type="text" class="form-control"
-                               placeholder="Horse power"/>
+                               placeholder="Horse power" required/>
                         <p th:if="${#fields.hasErrors('horsePower')}"
                            class="errors text-danger" th:errors="*{horsePower}">
                         </p>
@@ -117,7 +117,7 @@
                         <input id="year"
                                th:field="*{year}"
                                name="year" type="text" class="form-control"
-                               placeholder="Year"/>
+                               placeholder="Year" required/>
                         <p th:if="${#fields.hasErrors('year')}"
                            class="errors text-danger" th:errors="*{year}">
                         </p>
@@ -130,7 +130,7 @@
                         <label for="fuel" class="text-dark font-weight-bold form-required">Fuel</label>
                         <select id="fuel"
                                 th:field="*{fuel}"
-                                class="form-control">
+                                class="form-control" required>
                             <option value="">- Select fuel type -</option>
                             <option th:each="f : ${fuelsEnumList}"
                                     th:text="${f}"

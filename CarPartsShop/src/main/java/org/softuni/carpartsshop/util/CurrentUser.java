@@ -15,6 +15,8 @@ public class CurrentUser {
 
     private boolean isLogged;
 
+    private String email;
+
     private UUID uuid;
 
     public CurrentUser() {
@@ -43,6 +45,14 @@ public class CurrentUser {
 
     public void setLogged(boolean logged) {
         isLogged = logged;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public UUID getUuid() {

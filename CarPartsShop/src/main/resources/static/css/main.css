@@ -4,7 +4,7 @@ body {
     font-family: "Roboto Condensed", serif;
     font-size: 20px;
     background-image: linear-gradient(rgba(0,0,0,0.4),
-    rgba(0,0,0,0.6)),url("https://png.pngtree.com/background/20230522/original/pngtree-vintage-auto-parts-drawing-by-guy-picture-image_2693085.jpg");
+    rgba(0,0,0,0.6)),url("../images/parts.jpeg");
     background-position: center center;
     background-repeat: no-repeat;
     background-attachment: fixed;

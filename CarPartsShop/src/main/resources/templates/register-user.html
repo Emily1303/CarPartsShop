@@ -21,8 +21,7 @@
                         <input id="firstName"
                                th:field="*{firstName}"
                                name="firstName" type="text" class="form-control"
-                               placeholder="First name"
-                               required/>
+                               placeholder="First name" required/>
                         <p th:if="${#fields.hasErrors('firstName')}"
                            class="errors text-danger" th:errors="*{firstName}">Error
                         </p>
