@@ -16,12 +16,8 @@ public class BrandDto {
 
     private Set<Model> models;
 
-    public BrandDto(Brand brand) {
-        super();
-        brandName = brand.getBrandName();
-        brandImage = brand.getBrandImage();
-        uuid = brand.getUuid();
-        models = brand.getModels();
+    public BrandDto() {
+
     }
 
     public String getBrandName() {

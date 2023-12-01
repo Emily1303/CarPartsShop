@@ -2,9 +2,27 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head th:replace="~{fragments/head}">
 </head>
+
 <body>
-    <h1>
-      Here are the models!!!!!
-    </h1>
+<nav th:replace="~{fragments/navbar}">
+</nav>
+    <div class="container">
+        <div class="inner-container">
+            <section class="main-section mx-auto col-md-12 d-flex flex-column justify-content-center">
+                <ul class="ul-brands d-flex list-unstyled">
+                    <li class="col-md-2 mb-2 car"
+                            th:each="model : ${allModels}">
+                        <div class="model-container d-flex flex-column justify-content-between">
+                            <a th:href="@{/}"
+                               th:title="*{model.modelName}">
+                            </a>
+                            <a class="link-text"
+                               th:href="@{/}"
+                               th:text="*{model.modelName}">
+                            </a>
+                        </div>
+                    </li>
+        </div>
+    </div>
 </body>
 </html>

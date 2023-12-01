@@ -1,5 +1,6 @@
 package org.softuni.carpartsshop.services.impl;
 
+import org.modelmapper.ModelMapper;
 import org.softuni.carpartsshop.models.dtos.forLogic.AddCarDto;
 import org.softuni.carpartsshop.models.dtos.forLogic.AddPartDto;
 import org.softuni.carpartsshop.models.dtos.forTemplates.HomeDto;
@@ -23,8 +24,11 @@ public class SubmodelServiceImpl implements SubmodelService {
 
     private final SubmodelRepository submodelRepository;
 
-    public SubmodelServiceImpl(SubmodelRepository submodelRepository) {
+    private final ModelMapper modelMapper;
+
+    public SubmodelServiceImpl(SubmodelRepository submodelRepository, ModelMapper modelMapper) {
         this.submodelRepository = submodelRepository;
+        this.modelMapper = modelMapper;
     }
 
     @Override
@@ -62,7 +66,7 @@ public class SubmodelServiceImpl implements SubmodelService {
         List<SubmodelDto> submodelDtoList = new ArrayList<>();
 
         for (int i = 0; i < allSubmodels.size(); i++) {
-            SubmodelDto submodelDto = new SubmodelDto(allSubmodels.get(i));
+            SubmodelDto submodelDto = modelMapper.map(allSubmodels.get(i), SubmodelDto.class);
             submodelDtoList.add(submodelDto);
         }
 

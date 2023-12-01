@@ -11,6 +11,8 @@
 <main>
     <div class="container">
         <div class="inner-container">
+            <h1>Add new part</h1>
+
             <form th:action="@{/{uuid}/add/parts(uuid=${@currentUser.getUuid()})}"
                   th:method="post"
                   th:object="${addPartDto}"

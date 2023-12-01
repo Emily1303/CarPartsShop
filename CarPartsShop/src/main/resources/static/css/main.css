@@ -57,7 +57,7 @@ form > div:last-child {
     flex-wrap: wrap;
 }
 
-.brand-container {
+.brand-container, .model-container {
     height: 230px;
     align-items: center;
     padding: 10px 10px;
@@ -92,4 +92,9 @@ form > div:last-child {
 
 #btn-modal {
     width: 160px;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
 }

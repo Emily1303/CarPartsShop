@@ -26,17 +26,8 @@ public class SubmodelDto {
 
     private UUID uuid;
 
-    public SubmodelDto(Submodel submodel) {
-        super();
-        this.submodelName = submodel.getSubmodelName();
-        this.submodelImage = submodel.getSubmodelImage();
-        this.engine = submodel.getEngine();
-        this.engineCode = submodel.getEngineCode();
-        this.horsePower = submodel.getHorsePower();
-        this.year = submodel.getYear();
-        this.fuel = submodel.getFuel().toString();
-        this.parts = submodel.getParts();
-        this.uuid = submodel.getUuid();
+    public SubmodelDto() {
+
     }
 
     public String getSubmodelName() {
