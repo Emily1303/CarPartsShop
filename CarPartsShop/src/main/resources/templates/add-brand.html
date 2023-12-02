@@ -6,48 +6,50 @@
 <nav th:replace="~{fragments/navbar}">
 </nav>
 
-<div class="container">
-    <div class="inner-container">
-        <h1>Add new brand</h1>
+<main class="section-container">
+    <div class="container">
+        <div class="inner-container">
+            <h1>Add new brand</h1>
 
-        <form th:action="@{/{uuid}/brand(uuid=${@currentUser.getUuid()})}"
-                th:method="POST"
-              th:object="${addBrandDto}"
-              class="main-form mx-auto col-md-12">
-            <div class="row">
-                <div class="form-group col-md-6 mb-3">
-                    <label for="nameBrand" class="text-dark font-weight-bold form-required">Brand
-                        name</label>
-                    <input id="nameBrand"
-                           th:field="*{nameBrand}"
-                           name="nameBrand" type="text" class="form-control"
-                           placeholder="Brand name" required/>
-                    <p th:if="${#fields.hasErrors('nameBrand')}"
-                       class="errors text-danger" th:errors="*{nameBrand}">
-                    </p>
-                </div>
+            <form th:action="@{/{uuid}/brand(uuid=${@currentUser.getUuid()})}"
+                  th:method="POST"
+                  th:object="${addBrandDto}"
+                  class="main-form mx-auto col-md-12 d-flex flex-column justify-content-center">
+                <div class="row">
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="nameBrand" class="text-dark font-weight-bold form-required">Brand
+                            name</label>
+                        <input id="nameBrand"
+                               th:field="*{nameBrand}"
+                               name="nameBrand" type="text" class="form-control"
+                               placeholder="Brand name" required/>
+                        <p th:if="${#fields.hasErrors('nameBrand')}"
+                           class="errors text-danger" th:errors="*{nameBrand}">
+                        </p>
+                    </div>
 
-                <div class="form-group col-md-6 mb-3">
-                    <label for="brandImage" class="text-dark font-weight-bold form-required">
-                        Image of the brand</label>
-                    <input id="brandImage"
-                           th:field="*{brandImage}"
-                           name="brandImage" type="text" class="form-control"
-                           placeholder="Image of the brand" required/>
-                    <p th:if="${#fields.hasErrors('brandImage')}"
-                       class="errors text-danger" th:errors="*{brandImage}">
-                    </p>
+                    <div class="form-group col-md-6 mb-3">
+                        <label for="brandImage" class="text-dark font-weight-bold form-required">
+                            Image of the brand</label>
+                        <input id="brandImage"
+                               th:field="*{brandImage}"
+                               name="brandImage" type="text" class="form-control"
+                               placeholder="Image of the brand" required/>
+                        <p th:if="${#fields.hasErrors('brandImage')}"
+                           class="errors text-danger" th:errors="*{brandImage}">
+                        </p>
+                    </div>
                 </div>
 
                 <div class="row">
                     <div class="col col-md-4">
-                        <div class="button-holder">
-                            <input type="submit" class="btn btn-info bg-dark text-white btn-lg" value="Add brand"/>
+                        <div class="button-holder d-flex">
+                            <input type="submit" class="btn btn-info text-white bg-dark btn-lg" value="Add brand"/>
                         </div>
                     </div>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-</div>
+</main>
 </body>

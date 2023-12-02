@@ -86,14 +86,6 @@ form > div:last-child {
     margin: 10px auto;
 }
 
-.modal-content {
-    background-color: lightgrey;
-}
-
-#btn-modal {
-    width: 160px;
-}
-
 h1 {
     text-align: center;
     font-weight: bold;
