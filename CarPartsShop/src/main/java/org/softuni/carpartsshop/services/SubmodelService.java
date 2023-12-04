@@ -14,4 +14,6 @@ public interface SubmodelService {
 
     HomeDto getSubmodelsForHomePage();
 
+    Submodel getSubmodelAndPartsByName(String name);
+
 }

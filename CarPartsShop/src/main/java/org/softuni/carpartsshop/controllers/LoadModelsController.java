@@ -1,6 +1,5 @@
 package org.softuni.carpartsshop.controllers;
 
-import org.softuni.carpartsshop.models.entities.Brand;
 import org.softuni.carpartsshop.services.BrandService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,14 +22,14 @@ public class LoadModelsController {
         Set<org.softuni.carpartsshop.models.entities.Model> allModels =
                 brandService.getAllModelsByBrandName(name);
         model.addAttribute("allModels", allModels);
-        return "index-model";
+        return "submodels";
     }
 
     @GetMapping("/{uuid}/home/{name}")
     public String getModelsHomePage(@PathVariable("uuid") String uuid, @PathVariable("name") String name, Model model) {
         Set<org.softuni.carpartsshop.models.entities.Model> allModels = brandService.getAllModelsByBrandName(name);
         model.addAttribute("allModels", allModels);
-        return "index-model";
+        return "submodels";
     }
 
 }

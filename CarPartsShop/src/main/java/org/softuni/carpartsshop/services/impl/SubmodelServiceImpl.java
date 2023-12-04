@@ -73,4 +73,9 @@ public class SubmodelServiceImpl implements SubmodelService {
         return new HomeDto(submodelDtoList);
     }
 
+    @Override
+    public Submodel getSubmodelAndPartsByName(String name) {
+        return submodelRepository.findBySubmodelName(name).get();
+    }
+
 }

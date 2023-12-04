@@ -71,7 +71,7 @@ form > div:last-child {
     font-weight: bold;
 }
 
-.img-brand {
+.img-brand, .img-submodel {
     width: auto;
     height: 125px;
     margin: 10px auto auto auto;
@@ -89,4 +89,8 @@ form > div:last-child {
 h1 {
     text-align: center;
     font-weight: bold;
+}
+
+.information {
+    padding-left: 20px;
 }

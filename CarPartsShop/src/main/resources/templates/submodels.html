@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head}">
+</head>
+
+<body>
+<nav th:replace="~{fragments/navbar}">
+</nav>
+<div class="container">
+    <div class="inner-container">
+        <h1>Models</h1>
+
+        <section class="main-section mx-auto col-md-12 d-flex flex-column justify-content-center"
+                 th:each="model : ${allModels}">
+            <div class="information">
+                <ul class="d-flex gap-2 list-unstyled">
+                    <li>
+                        <a class="text-decoration-none text-dark" th:href="@{/}">CarParts -></a>
+                    </li>
+                    <li>
+                        <a th:text="*{model.brand.brandName}"></a>
+                    </li>
+                </ul>
+            </div>
+
+            <ul class="ul-brands d-flex list-unstyled">
+                <li class="col-md-2 mb-2 car" th:each="submodel : ${model.submodels}">
+                    <div class="model-container d-flex flex-column gap-2"
+                        th:if="${@currentUser.isLogged()}">
+                        <a th:href="@{/{uuid}/home/{name}/parts/{submodel}
+                            (uuid=${@currentUser.uuid},name=${model.brand.brandName},submodel=${submodel.submodelName})}"
+                           th:title="*{submodel.submodelName}">
+                            <img class="img-submodel" th:src="*{submodel.submodelImage}">
+                        </a>
+                        <a class="link-text"
+                           th:href="@{/{uuid}/home/{name}/parts/{submodel}
+                            (uuid=${@currentUser.uuid},name=${model.brand.brandName},submodel=${submodel.submodelName})}"
+                           th:text="*{model.modelName}">
+                        </a>
+                        <a class="link-text"
+                           th:href="@{/{uuid}/home/{name}/parts/{submodel}
+                            (uuid=${@currentUser.uuid},name=${model.brand.brandName},submodel=${submodel.submodelName})}"
+                           th:text="*{submodel.submodelName}"></a>
+                    </div>
+
+                    <div class="model-container d-flex flex-column gap-2"
+                        th:unless="${@currentUser.isLogged()}">
+                        <a th:href="@{/{name}/parts/{submodel}
+                            (name=${model.brand.brandName},submodel=${submodel.submodelName})}"
+                           th:title="*{submodel.submodelName}">
+                            <img class="img-submodel" th:src="*{submodel.submodelImage}">
+                        </a>
+                        <a class="link-text"
+                           th:href="@{/{name}/parts/{submodel}
+                            (name=${model.brand.brandName},submodel=${submodel.submodelName})}"
+                           th:text="*{model.modelName}">
+                        </a>
+                        <a class="link-text"
+                           th:href="@{/{name}/parts/{submodel}
+                            (name=${model.brand.brandName},submodel=${submodel.submodelName})}"
+                           th:text="*{submodel.submodelName}"></a>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </div>
+</div>
+</body>
+</html>

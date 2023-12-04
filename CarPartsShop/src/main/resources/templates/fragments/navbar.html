@@ -42,6 +42,9 @@
                            th:href="@{/{uuid}/profile(uuid=${@currentUser.getUuid()})}">
                             <th:block th:text="${@currentUser.getFullName()}"></th:block>
                         </a>
+                        <a class="text-white"
+                            th:href="@{/{uuid}/shopping-cart(uuid=${@currentUser.getUuid()})}">
+                            <i class="fa-solid fa-cart-shopping"></i></a>
                         <a class="nav-link" th:href="@{/logout}">Logout</a>
                     </div>
                 </li>

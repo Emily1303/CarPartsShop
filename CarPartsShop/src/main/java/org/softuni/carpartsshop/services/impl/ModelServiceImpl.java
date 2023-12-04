@@ -3,12 +3,15 @@ package org.softuni.carpartsshop.services.impl;
 import org.softuni.carpartsshop.models.dtos.forLogic.AddCarDto;
 import org.softuni.carpartsshop.models.entities.Brand;
 import org.softuni.carpartsshop.models.entities.Model;
+import org.softuni.carpartsshop.models.entities.Submodel;
 import org.softuni.carpartsshop.repositories.ModelRepository;
 import org.softuni.carpartsshop.services.ModelService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
 
 @Service
@@ -36,4 +39,5 @@ public class ModelServiceImpl implements ModelService {
         modelRepository.save(newModel);
         return newModel;
     }
+
 }

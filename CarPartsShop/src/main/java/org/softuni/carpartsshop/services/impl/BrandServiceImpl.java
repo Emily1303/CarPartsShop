@@ -28,7 +28,6 @@ public class BrandServiceImpl implements BrandService {
 
     @Override
     public Brand addBrand(AddCarDto addCarDto) {
-
         return brandRepository.findByBrandName(addCarDto.brandName()).get();
     }
 
