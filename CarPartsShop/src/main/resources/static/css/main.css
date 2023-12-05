@@ -92,5 +92,6 @@ h1 {
 }
 
 .information {
-    padding-left: 20px;
+    border-bottom: 2px solid black;
+    margin: 0 10px;
 }

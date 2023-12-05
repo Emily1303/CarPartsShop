@@ -11,42 +11,75 @@
         <div class="inner-container">
             <h1>Parts</h1>
             <section class="main-section mx-auto col-md-12 d-flex flex-column justify-content-center">
-                <div class="information">
+
+<!--                If the user is not logged in-->
+                <div class="information" th:unless="${@currentUser.isLogged()}">
                     <ul class="d-flex gap-2 list-unstyled">
                         <li>
                             <a class="text-decoration-none text-dark" th:href="@{/}">CarParts -></a>
                         </li>
                         <li>
-                            <a th:href="@{/}">
+                            <a class="text-decoration-none text-dark"
+                                    th:href="@{/{brand}(brand=${submodelParts.model.brand.brandName})}">
                                 <th:block th:text="${submodelParts.model.brand.brandName}"></th:block> ->
                             </a>
                         </li>
                         <li>
-                            <a th:text="${submodelParts.model.modelName}"></a>
+                            <a>
+                                <th:block th:text="${submodelParts.model.modelName}"></th:block>
+                                <th:block th:text="${submodelParts.submodelName}"></th:block>
+                            </a>
                         </li>
                     </ul>
                 </div>
 
+<!--                If the user is logged in-->
+                <div class="information" th:if="${@currentUser.isLogged()}">
+                    <ul class="d-flex gap-2 list-unstyled">
+                        <li>
+                            <a class="text-decoration-none text-dark"
+                               th:href="@{/{uuid}/home(uuid=${@currentUser.getUuid()})}">CarParts -></a>
+                        </li>
+                        <li>
+                            <a class="text-decoration-none text-dark"
+                                    th:href="@{/{uuid}/home/{brand}(uuid=${@currentUser.getUuid()},
+                                    brand=${submodelParts.model.brand.brandName})}">
+                                <th:block th:text="${submodelParts.model.brand.brandName}"></th:block> ->
+                            </a>
+                        </li>
+                        <li>
+                            <a>
+                                <th:block th:text="${submodelParts.model.modelName}"></th:block>
+                                <th:block th:text="${submodelParts.submodelName}"></th:block>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+<!--                The list of all parts - if the user is logged-->
                 <ul class="ul-brands d-flex list-unstyled">
-<!--                    <li class="col-md-2 mb-2 car" th:each="submodel : ${model.submodels}">-->
-<!--                        <div class="model-container d-flex flex-column gap-2"-->
-<!--                             th:if="${@currentUser.isLogged()}">-->
-<!--                            <a th:href="@{/{uuid}/home/{name}/parts/{submodel}-->
-<!--                            (uuid=${@currentUser.uuid},name=${model.brand.brandName},submodel=${submodel.submodelName})}"-->
-<!--                               th:title="*{submodel.submodelName}">-->
-<!--                                <img class="img-submodel" th:src="*{submodel.submodelImage}">-->
-<!--                            </a>-->
-<!--                            <a class="link-text"-->
-<!--                               th:href="@{/{uuid}/home/{name}/parts/{submodel}-->
-<!--                            (uuid=${@currentUser.uuid},name=${model.brand.brandName},submodel=${submodel.submodelName})}"-->
-<!--                               th:text="*{model.modelName}">-->
-<!--                            </a>-->
-<!--                            <a class="link-text"-->
-<!--                               th:href="@{/{uuid}/home/{name}/parts/{submodel}-->
-<!--                            (uuid=${@currentUser.uuid},name=${model.brand.brandName},submodel=${submodel.submodelName})}"-->
-<!--                               th:text="*{submodel.submodelName}"></a>-->
-<!--                        </div>-->
-<!--                    </li>-->
+                    <li class="col-md-2 mb-2 car" th:each="part : ${submodelParts.parts}">
+                        <div class="model-container"
+                             th:if="${@currentUser.isLogged()}">
+                            <a class="link-text"
+                               th:href="@{/}"
+                                    th:title="*{part.groupName}"
+                                th:text="*{part.groupName}">
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+
+<!--                The list of all parts - if the user is not logged-->
+                <ul class="ul-brands d-flex list-unstyled">
+                    <li class="col-md-2 mb-2 car" th:each="part : ${submodelParts.parts}">
+                        <div class="model-container d-flex flex-column gap-2"
+                             th:unless="${@currentUser.isLogged()}">
+                            <a th:title="*{part.groupName}"
+                                th:text="*{part.groupName}">
+                            </a>
+                        </div>
+                    </li>
                 </ul>
             </section>
         </div>

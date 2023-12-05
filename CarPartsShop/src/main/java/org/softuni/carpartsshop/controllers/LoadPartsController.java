@@ -19,14 +19,19 @@ public class LoadPartsController {
     @GetMapping("/{name}/parts/{submodel}")
     public String getPartsIndexPage(@PathVariable("name") String name,
                                     @PathVariable("submodel") String submodel, Model model) {
-        Submodel submodelAndParts = submodelService.getSubmodelAndPartsByName(name);
+
+        Submodel submodelAndParts = submodelService.getSubmodelAndPartsByName(submodel);
         model.addAttribute("submodelParts", submodelAndParts);
         return "parts";
     }
 
     @GetMapping("/{uuid}/home/{name}/parts/{submodel}")
     public String getPartsHomePage(@PathVariable("uuid") String uuid,
-                                   @PathVariable("name") String name, @PathVariable("submodel") String submodel) {
+                                   @PathVariable("name") String name,
+                                   @PathVariable("submodel") String submodel, Model model) {
+
+        Submodel submodelAndParts = submodelService.getSubmodelAndPartsByName(submodel);
+        model.addAttribute("submodelParts", submodelAndParts);
         return "parts";
     }
 
