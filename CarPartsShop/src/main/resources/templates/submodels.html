@@ -13,7 +13,7 @@
         <section class="main-section mx-auto col-md-12 d-flex flex-column justify-content-center"
                  th:each="model : ${allModels}">
 
-<!--            If the user is logged in-->
+            <!--            If the user is logged in-->
             <div class="information" th:if="${@currentUser.isLogged()}">
                 <ul class="d-flex gap-2 list-unstyled">
                     <li>
@@ -26,7 +26,7 @@
                 </ul>
             </div>
 
-<!--            If the user is not logged in-->
+            <!--            If the user is not logged in-->
             <div class="information" th:unless="${@currentUser.isLogged()}">
                 <ul class="d-flex gap-2 list-unstyled">
                     <li>
@@ -38,11 +38,11 @@
                 </ul>
             </div>
 
-<!--            The list of all submodels - if the user is logged in-->
+            <!--            The list of all submodels - if the user is logged in-->
             <ul class="ul-brands d-flex list-unstyled">
-                <li class="col-md-2 mb-2 car" th:each="submodel : ${model.submodels}">
-                    <div class="model-container d-flex flex-column gap-2"
-                        th:if="${@currentUser.isLogged()}">
+                <li class="col-md-3 mb-1 car" th:each="submodel : ${model.submodels}">
+                    <div class="model-container d-flex flex-column gap-1"
+                         th:if="${@currentUser.isLogged()}">
                         <a th:href="@{/{uuid}/home/{name}/parts/{submodel}
                             (uuid=${@currentUser.uuid},name=${model.brand.brandName},submodel=${submodel.submodelName})}"
                            th:title="*{submodel.submodelName}">
@@ -50,18 +50,17 @@
                         </a>
                         <a class="link-text"
                            th:href="@{/{uuid}/home/{name}/parts/{submodel}
-                            (uuid=${@currentUser.uuid},name=${model.brand.brandName},submodel=${submodel.submodelName})}"
-                           th:text="*{model.modelName}">
+                            (uuid=${@currentUser.uuid},name=${model.brand.brandName},submodel=${submodel.submodelName})}">
+
+                            <th:block th:text="*{model.modelName}"></th:block>
+                            <th:block th:text="*{submodel.submodelName}"></th:block>
                         </a>
-                        <a class="link-text"
-                           th:href="@{/{uuid}/home/{name}/parts/{submodel}
-                            (uuid=${@currentUser.uuid},name=${model.brand.brandName},submodel=${submodel.submodelName})}"
-                           th:text="*{submodel.submodelName}"></a>
+                        <a onclick="showMoreInfo()" class="show-text text-decoration-none">More</a>
                     </div>
 
-<!--                    The list of all submodels - if the user is not logged in-->
-                    <div class="model-container d-flex flex-column gap-2"
-                        th:unless="${@currentUser.isLogged()}">
+                    <!--                    The list of all submodels - if the user is not logged in-->
+                    <div class="model-container d-flex flex-column gap-1"
+                         th:unless="${@currentUser.isLogged()}">
                         <a th:href="@{/{name}/parts/{submodel}
                             (name=${model.brand.brandName},submodel=${submodel.submodelName})}"
                            th:title="*{submodel.submodelName}">
@@ -69,13 +68,32 @@
                         </a>
                         <a class="link-text"
                            th:href="@{/{name}/parts/{submodel}
-                            (name=${model.brand.brandName},submodel=${submodel.submodelName})}"
-                           th:text="*{model.modelName}">
+                            (name=${model.brand.brandName},submodel=${submodel.submodelName})}">
+
+                            <th:block th:text="*{model.modelName}"></th:block>
+                            <th:block th:text="*{submodel.submodelName}"></th:block>
                         </a>
-                        <a class="link-text"
-                           th:href="@{/{name}/parts/{submodel}
-                            (name=${model.brand.brandName},submodel=${submodel.submodelName})}"
-                           th:text="*{submodel.submodelName}"></a>
+
+                        <a onclick="showMoreInfo()" class="show-text text-decoration-none">More</a>
+                    </div>
+                    <div class="justify-content-between flex-column more-info-not-visible">
+                        <p class="d-inline-block more-info-p">Engine:
+                            <th:block th:text="${submodel.engine}"></th:block>
+                        </p>
+                        <p class="d-inline-block more-info-p">Engine code:
+                            <th:block th:text="${submodel.engineCode}"></th:block>
+                        </p>
+                        <p class="d-inline-block more-info-p">Fuel:
+                            <th:block th:text="${submodel.fuel}"></th:block>
+                        </p>
+                        <p class="d-inline-block more-info-p">Horse power:
+                            <th:block th:text="${submodel.horsePower}"></th:block>
+                        </p>
+                        <p class="d-inline-block more-info-p">Year:
+                            <th:block th:text="${submodel.year}"></th:block>
+                        </p>
+
+                        <a onclick="hideMoreInfo()" class="hide-text text-decoration-none">Hide</a>
                     </div>
                 </li>
             </ul>
@@ -83,4 +101,18 @@
     </div>
 </div>
 </body>
+
+<script type="text/javascript">
+    function showMoreInfo() {
+        let link = document.getElementsByClassName('show-text')[0];
+        let hiddenText = document.getElementsByClassName('more-info-not-visible')[0];
+        hiddenText.style.display = 'flex';
+    }
+
+    function hideMoreInfo() {
+        let link = document.getElementsByClassName('hide-text')[0];
+        let hiddenText = document.getElementsByClassName('more-info-not-visible')[0];
+        hiddenText.style.display = 'none';
+    }
+</script>
 </html>

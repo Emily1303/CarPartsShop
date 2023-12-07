@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="~{fragments/head}">
+</head>
+<body>
+<nav th:replace="~{fragments/navbar}">
+</nav>
+<div class="container">
+    <div class="inner-container">
+        <h1>Parts</h1>
+
+        <section class="main-section mx-auto col-md-12 d-flex flex-column justify-content-center">
+            <ul class="ul-brands d-flex list-unstyled" th:if="${@currentUser.isLogged()}">
+                <li class="col-md-2 mb-2" th:each="part : ${submodelParts.parts}">
+                    <div class="model-container d-flex flex-column gap-1"
+                         th:unless="${@currentUser.isLogged()}">
+                        <a th:href="@{/{name}/parts/{submodel}
+                            (name=${model.brand.brandName},submodel=${submodel.submodelName})}"
+                           th:title="*{submodel.submodelName}">
+                            <img class="img-submodel" th:src="*{submodel.submodelImage}">
+                        </a>
+                        <a class="link-text"
+                           th:href="@{/{name}/parts/{submodel}
+                            (name=${model.brand.brandName},submodel=${submodel.submodelName})}">
+
+                            <th:block th:text="*{model.modelName}"></th:block>
+                            <th:block th:text="*{submodel.submodelName}"></th:block>
+                        </a>
+
+                        <a onclick="showMoreInfo()" class="show-text text-decoration-none">More</a>
+                    </div>
+                </li>
+            </ul>
+        </section>
+    </div>
+</div>
+</body>
+</html>
