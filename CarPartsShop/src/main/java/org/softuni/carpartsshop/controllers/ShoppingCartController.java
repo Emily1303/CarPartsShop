@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 @Controller
 public class ShoppingCartController {
 
-    @GetMapping("/shopping-cart")
+    @GetMapping("/home/shopping-cart")
     public String showShoppingCart() {
         return "shopping-cart";
     }

@@ -33,6 +33,10 @@
                     </div>
                 </div>
 
+                <p th:if="${bad_credentials}" class="errors text-danger">
+                    Invalid email or password!
+                </p>
+
                 <div class="row">
                     <div class="col col-md-4">
                         <div class="button-holder d-flex">

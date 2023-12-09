@@ -15,19 +15,19 @@
                 </li>
 
                 <li class="nav-item"
-                    sec:authorize="isAuthenticated()">
+                    sec:authorize="hasRole('ADMIN')">
                     <a class="nav-link text-white"
                        th:href="@{/add/parts}">Add Part</a>
                 </li>
 
-                <li class="nav-item" sec:authorize="isAuthenticated()">
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                     <a class="nav-link text-white"
                        th:href="@{/add/car}">Add Car</a>
                 </li>
 
-                <li class="nav-item" sec:authorize="isAuthenticated()">
+                <li class="nav-item" sec:authorize="hasRole('ADMIN')">
                     <a class="nav-link text-white"
-                       th:href="@{/brand}">Add Brand</a>
+                       th:href="@{/add/brand}">Add Brand</a>
                 </li>
 
                 <li class="nav-item" sec:authorize="!isAuthenticated()">
@@ -39,17 +39,22 @@
                 </li>
 
                 <li class="nav-item" sec:authorize="isAuthenticated()">
-                    <div class="form-inline my-2 my-lg-0 d-flex align-items-center gap-3">
-                        <a class="logged-user text-primary text-decoration-none"
-                           th:href="@{/profile}">
+                    <div class="form-inline my-2 d-flex align-items-center gap-3">
+                        <a sec:authorize="hasRole('USER')"
+                                class="logged-user text-primary text-decoration-none"
+                           th:href="@{/home/profile}">
                             <th:block sec:authentication="name"></th:block>
                         </a>
-                        <a class="text-white"
-                            th:href="@{/shopping-cart}">
+                        <a sec:authorize="hasRole('USER')"
+                                class="text-white"
+                            th:href="@{/home/shopping-cart}">
                             <i class="fa-solid fa-cart-shopping"></i></a>
-                        <form th:method="post"
+                        <form sec:authorize="isAuthenticated()"
+                                th:method="post"
                                 th:action="@{/logout}">
-                            <input type="submit" class="btn btn-link" value="Logout"/>
+                            <input type="submit"
+                                   class="logout-btn btn btn-link text-decoration-none"
+                                   value="Logout"/>
                         </form>
                     </div>
                 </li>

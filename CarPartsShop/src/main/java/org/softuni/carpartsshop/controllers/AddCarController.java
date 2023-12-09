@@ -10,7 +10,6 @@ import org.softuni.carpartsshop.models.enums.FuelsEnum;
 import org.softuni.carpartsshop.services.BrandService;
 import org.softuni.carpartsshop.services.ModelService;
 import org.softuni.carpartsshop.services.SubmodelService;
-import org.softuni.carpartsshop.util.CurrentUser;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;

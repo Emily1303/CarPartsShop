@@ -1,5 +1,7 @@
 package org.softuni.carpartsshop.config;
 
+import org.softuni.carpartsshop.models.entities.Role;
+import org.softuni.carpartsshop.models.enums.RoleNamesEnum;
 import org.softuni.carpartsshop.repositories.UserRepository;
 import org.softuni.carpartsshop.services.impl.CarPartsShopUserDetailsService;
 import org.springframework.boot.autoconfigure.security.servlet.PathRequest;
@@ -26,6 +28,9 @@ public class SecurityConfiguration {
                         .requestMatchers("/", "/{name}", "/{name}/parts/{submodel}",
                                 "/{name}/parts/{submodel}/{group}", "/login",
                                 "/register", "/login-error").permitAll()
+                        .requestMatchers("/add/brand", "/add/car", "/add/parts")
+                        .hasRole(RoleNamesEnum.ADMIN.name())
+                        .requestMatchers("/home/shopping-cart", "/home/profile").hasRole(RoleNamesEnum.USER.name())
 //                  all other requests are authenticated
                         .anyRequest().authenticated()
         ).formLogin(
@@ -33,7 +38,7 @@ public class SecurityConfiguration {
 //                        this is the login page and if someone tries to access something
 //                        that is not allowed - redirect to login page
                         formLogin.loginPage("/login")
-                        ).usernameParameter("email")
+                ).usernameParameter("email")
                         .passwordParameter("password")
 //                        if the user logged in successfully
                         .defaultSuccessUrl("/home")
