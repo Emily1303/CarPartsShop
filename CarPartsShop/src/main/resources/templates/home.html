@@ -17,7 +17,8 @@
                     <ul class="ul-brands d-flex list-unstyled">
                         <li class="col-md-2 mb-2 car"
                             th:each="brandDto : ${homeDto.brandDtoList}">
-                            <div class="brand-container d-flex flex-column justify-content-between">
+                            <div class="brand-container d-flex flex-column justify-content-between"
+                                    th:if="${@currentUser.isLogged()}">
                                 <a th:href="@{/{uuid}/home/{name}(uuid=${@currentUser.uuid},name=${brandDto.brandName})}"
                                    th:title="${brandDto.brandName}">
                                     <img class="img-brand"
@@ -34,5 +35,8 @@
             </div>
         </div>
     </main>
+
+    <footer th:replace="~{fragments/footer}">
+    </footer>
 </body>
 </html>

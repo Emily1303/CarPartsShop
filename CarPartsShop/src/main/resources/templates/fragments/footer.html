@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<footer th:fragment="footer" class="bg-dark text-white">
+    <div class="container">
+        <nav class="inner-container container-footer d-flex justify-content-center gap-6">
+            <div>
+                <ul class="list-unstyled contacts-footer">
+                    <li class="title"><b>CONTACTS</b></li>
+                    <li>
+                        <span><b>Car Parts Shop</b></span>
+                    </li>
+                    <li>
+                        <a class="text-white text-decoration-none" th:href="@{/}">
+                            <i class="fa-solid fa-envelope"></i> hshdhdh.sjjd@example.com
+                        </a>
+                    </li>
+                    <li>
+                        <span><i class="fa-solid fa-phone"></i> 0888123659</span>
+                    </li>
+                </ul>
+            </div>
+
+            <div>
+                <ul class="list-unstyled media-footer">
+                    <li class="title"><b>SOCIAL MEDIA</b></li>
+                    <ul class="list-unstyled d-flex justify-content-center gap-3">
+                        <li>
+                            <a class="text-white text-decoration-none" th:href="@{/}">
+                                <i class="fa-brands fa-facebook"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-white text-decoration-none" th:href="@{/}">
+                                <i class="fa-brands fa-twitter"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="text-white text-decoration-none" th:href="@{/}">
+                                <i class="fa-brands fa-instagram"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</footer>
+</body>
+</html>

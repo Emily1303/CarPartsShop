@@ -8,6 +8,8 @@ import org.softuni.carpartsshop.services.PartService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -37,6 +39,21 @@ public class PartServiceImpl implements PartService {
 
         partRepository.save(newPart);
         return newPart;
+    }
+
+    @Override
+    public List<Part> getAllPartsByGroupNameAndSubmodel(String group, List<Part> allPartsOfSubmodel) {
+        List<Part> allPartsOfGivenGroup = new ArrayList<>();
+
+        for (int i = 0; i < allPartsOfSubmodel.size(); i++) {
+            Part currentPart = allPartsOfSubmodel.get(i);
+
+            if (currentPart.getGroupName().equals(group)) {
+                allPartsOfGivenGroup.add(currentPart);
+            }
+        }
+
+        return allPartsOfGivenGroup;
     }
 
 }

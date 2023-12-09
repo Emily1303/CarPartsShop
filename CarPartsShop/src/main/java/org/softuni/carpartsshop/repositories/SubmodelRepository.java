@@ -22,6 +22,4 @@ public interface SubmodelRepository extends JpaRepository<Submodel, Long> {
 
     Optional<Submodel> findBySubmodelName(String name);
 
-
-
 }

@@ -12,7 +12,7 @@
         <h1>Part Groups</h1>
         <section class="main-section mx-auto col-md-12 d-flex flex-column justify-content-center">
 
-            <!--                If the user is not logged in-->
+            <!--                If the user is NOT logged in-->
             <div class="information" th:unless="${@currentUser.isLogged()}">
                 <ul class="d-flex gap-2 list-unstyled">
                     <li>
@@ -34,7 +34,7 @@
                 </ul>
             </div>
 
-            <!--                If the user is logged in-->
+            <!--                If the user IS logged in-->
             <div class="information" th:if="${@currentUser.isLogged()}">
                 <ul class="d-flex gap-2 list-unstyled">
                     <li>
@@ -58,35 +58,37 @@
                 </ul>
             </div>
 
-            <!--                The list of all parts - if the user is logged-->
+            <!--                The list of all groups of parts - if the user IS logged-->
             <ul class="ul-brands d-flex list-unstyled" th:if="${@currentUser.isLogged()}">
                 <li class="col-md-2 mb-2" th:each="part : ${submodelParts.parts}">
-<!--                    <button class="link-text part-group"-->
-<!--                            th:href="@{/{name}/parts/{submodel}/{group}-->
-<!--                            (name=${submodelParts.model.brand.brandName},submodel=${submodelParts.submodelName},-->
-<!--                            group=${part.groupName})}"-->
-<!--                            th:title="*{part.groupName}"-->
-<!--                            th:text="*{part.groupName}"></button>-->
-                    <a class="link-text part-group"
-                       th:href="@{/{name}/parts/{submodel}/{group}
-                            (name=${submodelParts.model.brand.brandName},submodel=${submodelParts.submodelName},
-                            group=${part.groupName})}"
+                    <a class="part-group link-text d-flex justify-content-center"
+                       th:href="@{/{uuid}/home/{name}/parts/{submodel}/{group}
+                       (uuid=${@currentUser.uuid}, name=${submodelParts.model.brand.brandName},
+                       submodel=${submodelParts.submodelName}, group=${part.groupName})}"
                        th:title="*{part.groupName}"
-                       th:text="*{part.groupName}"></a>
+                       th:text="*{part.groupName}">
+                    </a>
                 </li>
             </ul>
 
-            <!--                The list of all parts - if the user is not logged-->
+            <!--                The list of all groups of parts - if the user is NOT logged-->
             <ul class="ul-brands d-flex list-unstyled" th:unless="${@currentUser.isLogged()}">
                 <li class="col-md-2 mb-2" th:each="part : ${submodelParts.parts}">
-                    <button class="link-text part-group" th:href="@{/}"
-                            th:title="*{part.groupName}"
-                            th:text="*{part.groupName}"></button>
+                    <a class="part-group link-text d-flex justify-content-center"
+                        th:href="@{/{name}/parts/{submodel}/{group}
+                        (name=${submodelParts.model.brand.brandName},submodel=${submodelParts.submodelName},
+                        group=${part.groupName})}"
+                        th:title="*{part.groupName}"
+                        th:text="*{part.groupName}">
+                    </a>
                 </li>
             </ul>
         </section>
     </div>
 </div>
+
+<footer th:replace="~{fragments/footer}">
+</footer>
 </body>
 
 <!--<script type="text/javascript">-->

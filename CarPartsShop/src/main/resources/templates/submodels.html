@@ -13,7 +13,7 @@
         <section class="main-section mx-auto col-md-12 d-flex flex-column justify-content-center"
                  th:each="model : ${allModels}">
 
-            <!--            If the user is logged in-->
+            <!--            If the user IS logged in-->
             <div class="information" th:if="${@currentUser.isLogged()}">
                 <ul class="d-flex gap-2 list-unstyled">
                     <li>
@@ -26,7 +26,7 @@
                 </ul>
             </div>
 
-            <!--            If the user is not logged in-->
+            <!--            If the user is NOT logged in-->
             <div class="information" th:unless="${@currentUser.isLogged()}">
                 <ul class="d-flex gap-2 list-unstyled">
                     <li>
@@ -38,7 +38,7 @@
                 </ul>
             </div>
 
-            <!--            The list of all submodels - if the user is logged in-->
+            <!--            The list of all submodels - if the user IS logged in-->
             <ul class="ul-brands d-flex list-unstyled">
                 <li class="col-md-3 mb-1 car" th:each="submodel : ${model.submodels}">
                     <div class="model-container d-flex flex-column gap-1"
@@ -58,7 +58,7 @@
                         <a onclick="showMoreInfo()" class="show-text text-decoration-none">More</a>
                     </div>
 
-                    <!--                    The list of all submodels - if the user is not logged in-->
+                    <!--                    The list of all submodels - if the user is NOT logged in-->
                     <div class="model-container d-flex flex-column gap-1"
                          th:unless="${@currentUser.isLogged()}">
                         <a th:href="@{/{name}/parts/{submodel}
@@ -76,20 +76,21 @@
 
                         <a onclick="showMoreInfo()" class="show-text text-decoration-none">More</a>
                     </div>
+
                     <div class="justify-content-between flex-column more-info-not-visible">
-                        <p class="d-inline-block more-info-p">Engine:
+                        <p class="d-inline-block more-info-p"><b>Engine:</b>
                             <th:block th:text="${submodel.engine}"></th:block>
                         </p>
-                        <p class="d-inline-block more-info-p">Engine code:
+                        <p class="d-inline-block more-info-p"><b>Engine code:</b>
                             <th:block th:text="${submodel.engineCode}"></th:block>
                         </p>
-                        <p class="d-inline-block more-info-p">Fuel:
+                        <p class="d-inline-block more-info-p"><b>Fuel:</b>
                             <th:block th:text="${submodel.fuel}"></th:block>
                         </p>
-                        <p class="d-inline-block more-info-p">Horse power:
+                        <p class="d-inline-block more-info-p"><b>Horse power:</b>
                             <th:block th:text="${submodel.horsePower}"></th:block>
                         </p>
-                        <p class="d-inline-block more-info-p">Year:
+                        <p class="d-inline-block more-info-p"><b>Year:</b>
                             <th:block th:text="${submodel.year}"></th:block>
                         </p>
 
@@ -100,6 +101,9 @@
         </section>
     </div>
 </div>
+
+<footer th:replace="~{fragments/footer}">
+</footer>
 </body>
 
 <script type="text/javascript">

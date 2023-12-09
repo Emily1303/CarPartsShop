@@ -68,7 +68,6 @@ form > div:last-child {
     height: 290px;
     align-items: center;
     padding: 10px 10px;
-    gap: 10px;
 }
 
 .link-text {
@@ -137,3 +136,54 @@ h1 {
     cursor: pointer;
     text-align: center;
 }
+
+.img-part {
+    width: auto;
+    height: 180px;
+    margin: 10px auto auto auto;
+}
+
+.part-container {
+    height: 350px;
+    align-items: center;
+    padding: 10px 10px;
+}
+
+.price-container > .part-paraf {
+    font-weight: bold;
+    font-size: 28px;
+    margin-bottom: auto;
+}
+
+.price-container > button {
+    background-color: midnightblue;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 3px;
+    font-family: Calibri, sans-serif;
+    border: 2px solid #212529;
+}
+
+.part-container > div > button:hover {
+    background-color: #212529;
+}
+
+.part-container > .part-paraf {
+    margin-bottom: auto;
+}
+
+.container-footer {
+    font-family: Calibri, sans-serif;
+    background-color: #212529;
+    margin-top: 60px;
+}
+
+.contacts-footer > li {
+    margin-bottom: 6px;
+}
+
+.contacts-footer > .title, .media-footer > .title {
+    margin-bottom: 20px;
+}
+
