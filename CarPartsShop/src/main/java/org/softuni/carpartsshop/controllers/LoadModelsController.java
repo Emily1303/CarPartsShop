@@ -26,8 +26,8 @@ public class LoadModelsController {
         return "submodels";
     }
 
-    @GetMapping("/{uuid}/home/{name}")
-    public String getModelsHomePage(@PathVariable("uuid") String uuid, @PathVariable("name") String name, Model model) {
+    @GetMapping("/home/{name}")
+    public String getModelsHomePage(@PathVariable("name") String name, Model model) {
 
         Set<org.softuni.carpartsshop.models.entities.Model> allModels = brandService.getAllModelsByBrandName(name);
         model.addAttribute("allModels", allModels);

@@ -21,24 +21,17 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class AddPartController {
 
-    private final CurrentUser currentUser;
-
     private final PartService partService;
 
     private final SubmodelService submodelService;
 
-    public AddPartController(CurrentUser currentUser, PartService partService, SubmodelService submodelService) {
-        this.currentUser = currentUser;
+    public AddPartController(PartService partService, SubmodelService submodelService) {
         this.partService = partService;
         this.submodelService = submodelService;
     }
 
-    @GetMapping("/{uuid}/add/parts")
-    public String addPart(Model model, @PathVariable String uuid) {
-        if (!currentUser.isLogged()) {
-            return "redirect:/login";
-        }
-
+    @GetMapping("/add/parts")
+    public String addPart(Model model) {
         if (!model.containsAttribute("addPartDto")) {
             model.addAttribute("addPartDto", AddPartDto.construct());
         }
@@ -49,23 +42,23 @@ public class AddPartController {
         return "add-parts";
     }
 
-    @PostMapping("/{uuid}/add/parts")
+    @PostMapping("/add/parts")
     public String addPart(@Valid AddPartDto addPartDto, BindingResult bindingResult,
-                          RedirectAttributes rAttr, @PathVariable String uuid) {
+                          RedirectAttributes rAttr) {
 
         if (bindingResult.hasErrors()) {
             rAttr.addFlashAttribute("addPartDto", addPartDto);
             rAttr.addFlashAttribute("org.springframework.validation.BindingResult.addPartDto",
                     bindingResult);
 
-            return "redirect:/" + uuid + "/add/parts";
+            return "redirect:/add/parts";
         }
 
         Submodel submodel = submodelService.getSubmodel(addPartDto);
         Part part = partService.addPart(addPartDto, submodel);
         submodel.getParts().add(part);
 
-        return "redirect:/" + uuid + "/home";
+        return "redirect:/home";
     }
 
 }

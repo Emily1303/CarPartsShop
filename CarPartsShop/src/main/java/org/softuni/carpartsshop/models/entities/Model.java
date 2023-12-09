@@ -27,11 +27,6 @@ public class Model extends BaseEntity {
     @OneToMany(mappedBy = "model", fetch = FetchType.EAGER)
     private Set<Submodel> submodels;
 
-    @NotNull
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(unique = true)
-    private UUID uuid;
-
     public Model() {
         this.submodels  = new HashSet<>();
     }
@@ -60,12 +55,5 @@ public class Model extends BaseEntity {
         this.submodels = submodels;
     }
 
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
 
 }

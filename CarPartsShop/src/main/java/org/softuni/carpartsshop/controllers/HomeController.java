@@ -16,12 +16,10 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class HomeController {
 
-    private final CurrentUser currentUser;
 
     private final BrandService brandService;
 
-    public HomeController(CurrentUser currentUser, BrandService brandService) {
-        this.currentUser = currentUser;
+    public HomeController(BrandService brandService) {
         this.brandService = brandService;
     }
 
@@ -33,12 +31,8 @@ public class HomeController {
         return "index";
     }
 
-    @GetMapping("/{uuid}/home")
-    public String homePage(@PathVariable("uuid") String uuid, Model model) {
-        if (!currentUser.isLogged()) {
-            return "redirect:/login";
-        }
-
+    @GetMapping("/home")
+    public String homePage(Model model) {
         HomeDto homeDto = brandService.getBrandsForHomePage();
         model.addAttribute("homeDto", homeDto);
 

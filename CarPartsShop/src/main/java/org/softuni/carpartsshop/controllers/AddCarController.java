@@ -20,28 +20,20 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class AddCarController {
 
-    private CurrentUser currentUser;
-
     private BrandService brandService;
 
     private ModelService modelService;
 
     private SubmodelService submodelService;
 
-    public AddCarController(CurrentUser currentUser, BrandService brandService, ModelService modelService, SubmodelService submodelService) {
-        this.currentUser = currentUser;
+    public AddCarController(BrandService brandService, ModelService modelService, SubmodelService submodelService) {
         this.brandService = brandService;
         this.modelService = modelService;
         this.submodelService = submodelService;
     }
 
-    @GetMapping("/{uuid}/add/car")
-    public String addCar(Model model, @PathVariable String uuid) {
-
-        if (!currentUser.isLogged()) {
-            return "redirect:/login";
-        }
-
+    @GetMapping("/add/car")
+    public String addCar(Model model) {
         if (!model.containsAttribute("addCarDto")) {
             model.addAttribute("addCarDto", AddCarDto.construct());
         }
@@ -58,16 +50,16 @@ public class AddCarController {
         return FuelsEnum.values();
     }
 
-    @PostMapping("/{uuid}/add/car")
+    @PostMapping("/add/car")
     public String addCar(@Valid AddCarDto addCarDto, BindingResult bindingResult,
-                         RedirectAttributes rAttr, @PathVariable String uuid) {
+                         RedirectAttributes rAttr) {
 
         if (bindingResult.hasErrors()) {
             rAttr.addFlashAttribute("addCarDto", addCarDto);
             rAttr.addFlashAttribute("org.springframework.validation.BindingResult.addCarDto",
                     bindingResult);
 
-            return "redirect:/" + uuid + "/add/car";
+            return "redirect:/add/car";
         }
 
         Brand brand = brandService.addBrand(addCarDto);
@@ -83,6 +75,6 @@ public class AddCarController {
             modelForBrand.getSubmodels().add(submodel);
         }
 
-        return "redirect:/" + uuid + "/add/parts";
+        return "redirect:/add/parts";
     }
 }

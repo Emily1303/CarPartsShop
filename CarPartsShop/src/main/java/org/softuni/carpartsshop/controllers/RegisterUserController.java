@@ -2,6 +2,9 @@ package org.softuni.carpartsshop.controllers;
 
 import jakarta.validation.Valid;
 import org.softuni.carpartsshop.models.dtos.forLogic.RegisterDto;
+import org.softuni.carpartsshop.models.entities.User;
+import org.softuni.carpartsshop.models.enums.RoleNamesEnum;
+import org.softuni.carpartsshop.services.RoleService;
 import org.softuni.carpartsshop.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,7 +18,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @RequestMapping("/register")
 public class RegisterUserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     public RegisterUserController(UserService userService) {
         this.userService = userService;
@@ -44,6 +47,7 @@ public class RegisterUserController {
         }
 
         userService.registerUser(registerDto);
+
         return "redirect:/login";
     }
 

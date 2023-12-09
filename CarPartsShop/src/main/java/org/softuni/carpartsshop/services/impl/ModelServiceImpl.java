@@ -34,7 +34,6 @@ public class ModelServiceImpl implements ModelService {
         Model newModel = new Model();
         newModel.setModelName(addCarDto.modelName());
         newModel.setBrand(brand);
-        newModel.setUuid(UUID.randomUUID());
 
         modelRepository.save(newModel);
         return newModel;

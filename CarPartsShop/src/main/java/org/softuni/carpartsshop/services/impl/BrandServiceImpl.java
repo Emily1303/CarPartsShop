@@ -36,7 +36,6 @@ public class BrandServiceImpl implements BrandService {
         Brand brand = new Brand();
         brand.setBrandName(addBrandDto.nameBrand());
         brand.setBrandImage(addBrandDto.brandImage());
-        brand.setUuid(UUID.randomUUID());
         brand.setModels(new HashSet<>());
 
         brandRepository.save(brand);

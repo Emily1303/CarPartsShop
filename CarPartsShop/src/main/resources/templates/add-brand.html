@@ -11,7 +11,7 @@
         <div class="inner-container">
             <h1>Add new brand</h1>
 
-            <form th:action="@{/{uuid}/brand(uuid=${@currentUser.getUuid()})}"
+            <form th:action="@{/brand}"
                   th:method="POST"
                   th:object="${addBrandDto}"
                   class="main-form mx-auto col-md-12 d-flex flex-column justify-content-center">

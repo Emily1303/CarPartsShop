@@ -16,8 +16,7 @@
                     <ul class="ul-brands d-flex list-unstyled">
                         <li class="col-md-2 mb-2 car"
                             th:each="brandDto : ${homeDto.brandDtoList}">
-                            <div class="brand-container d-flex flex-column justify-content-between"
-                                th:unless="${@currentUser.isLogged()}">
+                            <div class="brand-container d-flex flex-column justify-content-between">
                                 <a class="image"
                                         th:href="@{/{name}(name=${brandDto.brandName})}"
                                    th:title="${brandDto.brandName}">

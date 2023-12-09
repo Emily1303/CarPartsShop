@@ -54,11 +54,6 @@ public class Submodel extends BaseEntity {
     @ManyToMany(targetEntity = Part.class, mappedBy = "submodel", fetch = FetchType.EAGER)
     private List<Part> parts;
 
-    @NotNull
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(unique = true)
-    private UUID uuid;
-
     public Submodel() {
         this.parts = new ArrayList<>();
     }
@@ -125,14 +120,6 @@ public class Submodel extends BaseEntity {
 
     public void setParts(List<Part> parts) {
         this.parts = parts;
-    }
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
     }
 
     public String getSubmodelImage() {

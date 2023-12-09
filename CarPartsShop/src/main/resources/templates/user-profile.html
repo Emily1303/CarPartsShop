@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head th:replace="~{/fragments/head}">
 </head>
@@ -20,7 +21,7 @@
                             <li>
                                 <h3>Full name:</h3>
                             </li>
-                            <li th:text="${@currentUser.getFullName()}"></li>
+                            <li sec:authentication="name"></li>
                             <li><h3>Last name:</h3></li>
                         </ul>
                     </main>

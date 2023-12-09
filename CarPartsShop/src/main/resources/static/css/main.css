@@ -9,6 +9,9 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
+    display: flex;
+    flex-direction: column;
+    gap: 60px;
 }
 
 .navbar {
@@ -39,7 +42,7 @@ body {
 
 .inner-container {
     background-color: lightgrey;
-    margin-top: 150px;
+    margin-top: 130px;
     padding: 30px 0 20px 0;
 }
 
@@ -177,6 +180,7 @@ h1 {
     font-family: Calibri, sans-serif;
     background-color: #212529;
     margin-top: 60px;
+    gap: 130px;
 }
 
 .contacts-footer > li {
@@ -185,5 +189,9 @@ h1 {
 
 .contacts-footer > .title, .media-footer > .title {
     margin-bottom: 20px;
+}
+
+.footer-icon {
+    margin-right: 9px;
 }
 

@@ -48,7 +48,6 @@ public class SubmodelServiceImpl implements SubmodelService {
         newSubmodel.setYear(addCarDto.year());
         newSubmodel.setFuel(FuelsEnum.valueOf(addCarDto.fuel()));
         newSubmodel.setSubmodelImage(addCarDto.submodelImage());
-        newSubmodel.setUuid(UUID.randomUUID());
         newSubmodel.setModel(model);
 
         submodelRepository.save(newSubmodel);

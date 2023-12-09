@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{fragments/head}">
 </head>
 
@@ -13,7 +14,7 @@
         <section class="main-section mx-auto col-md-12 d-flex flex-column justify-content-center">
 
             <!--                If the user is NOT logged in-->
-            <div class="information" th:unless="${@currentUser.isLogged()}">
+            <div class="information" sec:authorize="!isAuthenticated()">
                 <ul class="d-flex gap-2 list-unstyled">
                     <li>
                         <a class="text-decoration-none text-dark" th:href="@{/}">CarParts -></a>
@@ -35,16 +36,15 @@
             </div>
 
             <!--                If the user IS logged in-->
-            <div class="information" th:if="${@currentUser.isLogged()}">
+            <div class="information" sec:authorize="isAuthenticated()">
                 <ul class="d-flex gap-2 list-unstyled">
                     <li>
                         <a class="text-decoration-none text-dark"
-                           th:href="@{/{uuid}/home(uuid=${@currentUser.getUuid()})}">CarParts -></a>
+                           th:href="@{/home}">CarParts -></a>
                     </li>
                     <li>
                         <a class="text-decoration-none text-dark"
-                           th:href="@{/{uuid}/home/{brand}(uuid=${@currentUser.getUuid()},
-                                    brand=${submodelParts.model.brand.brandName})}">
+                           th:href="@{/home/{brand}(brand=${submodelParts.model.brand.brandName})}">
                             <th:block th:text="${submodelParts.model.brand.brandName}"></th:block>
                             ->
                         </a>
@@ -59,11 +59,11 @@
             </div>
 
             <!--                The list of all groups of parts - if the user IS logged-->
-            <ul class="ul-brands d-flex list-unstyled" th:if="${@currentUser.isLogged()}">
+            <ul class="ul-brands d-flex list-unstyled" sec:authorize="isAuthenticated()">
                 <li class="col-md-2 mb-2" th:each="part : ${submodelParts.parts}">
                     <a class="part-group link-text d-flex justify-content-center"
-                       th:href="@{/{uuid}/home/{name}/parts/{submodel}/{group}
-                       (uuid=${@currentUser.uuid}, name=${submodelParts.model.brand.brandName},
+                       th:href="@{/home/{name}/parts/{submodel}/{group}
+                       (name=${submodelParts.model.brand.brandName},
                        submodel=${submodelParts.submodelName}, group=${part.groupName})}"
                        th:title="*{part.groupName}"
                        th:text="*{part.groupName}">
@@ -72,7 +72,7 @@
             </ul>
 
             <!--                The list of all groups of parts - if the user is NOT logged-->
-            <ul class="ul-brands d-flex list-unstyled" th:unless="${@currentUser.isLogged()}">
+            <ul class="ul-brands d-flex list-unstyled" sec:authorize="!isAuthenticated()">
                 <li class="col-md-2 mb-2" th:each="part : ${submodelParts.parts}">
                     <a class="part-group link-text d-flex justify-content-center"
                         th:href="@{/{name}/parts/{submodel}/{group}

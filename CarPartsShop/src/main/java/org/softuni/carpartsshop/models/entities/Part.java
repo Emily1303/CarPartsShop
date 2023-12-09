@@ -47,11 +47,6 @@ public class Part extends BaseEntity {
     private Boolean isAvailable;
 
     @NotNull
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(unique = true)
-    private UUID uuid;
-
-    @NotNull
     @Column(name = "part_image")
     private String partImage;
 
@@ -119,14 +114,6 @@ public class Part extends BaseEntity {
 
     public void setAvailable(Boolean available) {
         isAvailable = available;
-    }
-
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
     }
 
     public String getPartImage() {

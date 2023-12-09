@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{fragments/head}">
 </head>
 
@@ -14,11 +15,11 @@
                  th:each="model : ${allModels}">
 
             <!--            If the user IS logged in-->
-            <div class="information" th:if="${@currentUser.isLogged()}">
+            <div class="information" sec:authorize="isAuthenticated()">
                 <ul class="d-flex gap-2 list-unstyled">
                     <li>
                         <a class="text-decoration-none text-dark"
-                           th:href="@{/{uuid}/home(uuid=${@currentUser.getUuid()})}">CarParts -></a>
+                           th:href="@{/home}">CarParts -></a>
                     </li>
                     <li>
                         <a th:text="*{model.brand.brandName}"></a>
@@ -27,7 +28,7 @@
             </div>
 
             <!--            If the user is NOT logged in-->
-            <div class="information" th:unless="${@currentUser.isLogged()}">
+            <div class="information" sec:authorize="!isAuthenticated()">
                 <ul class="d-flex gap-2 list-unstyled">
                     <li>
                         <a class="text-decoration-none text-dark" th:href="@{/}">CarParts -></a>
@@ -42,15 +43,15 @@
             <ul class="ul-brands d-flex list-unstyled">
                 <li class="col-md-3 mb-1 car" th:each="submodel : ${model.submodels}">
                     <div class="model-container d-flex flex-column gap-1"
-                         th:if="${@currentUser.isLogged()}">
-                        <a th:href="@{/{uuid}/home/{name}/parts/{submodel}
-                            (uuid=${@currentUser.uuid},name=${model.brand.brandName},submodel=${submodel.submodelName})}"
+                         sec:authorize="isAuthenticated()">
+                        <a th:href="@{/home/{name}/parts/{submodel}
+                            (name=${model.brand.brandName},submodel=${submodel.submodelName})}"
                            th:title="*{submodel.submodelName}">
                             <img class="img-submodel" th:src="*{submodel.submodelImage}">
                         </a>
                         <a class="link-text"
-                           th:href="@{/{uuid}/home/{name}/parts/{submodel}
-                            (uuid=${@currentUser.uuid},name=${model.brand.brandName},submodel=${submodel.submodelName})}">
+                           th:href="@{/home/{name}/parts/{submodel}
+                            (name=${model.brand.brandName},submodel=${submodel.submodelName})}">
 
                             <th:block th:text="*{model.modelName}"></th:block>
                             <th:block th:text="*{submodel.submodelName}"></th:block>
@@ -60,7 +61,7 @@
 
                     <!--                    The list of all submodels - if the user is NOT logged in-->
                     <div class="model-container d-flex flex-column gap-1"
-                         th:unless="${@currentUser.isLogged()}">
+                         sec:authorize="!isAuthenticated()">
                         <a th:href="@{/{name}/parts/{submodel}
                             (name=${model.brand.brandName},submodel=${submodel.submodelName})}"
                            th:title="*{submodel.submodelName}">

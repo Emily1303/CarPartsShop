@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:replace="~{fragments/head}">
 </head>
 <body>
@@ -11,8 +12,8 @@
 
         <section class="main-section mx-auto col-md-12 d-flex flex-column justify-content-center">
 
-<!--            If the user is NOT logged in-->
-            <div class="information" th:unless="${@currentUser.isLogged()}">
+            <!--            If the user is NOT logged in-->
+            <div class="information" sec:authorize="!isAuthenticated()">
                 <ul class="d-flex gap-2 list-unstyled">
                     <li>
                         <a class="text-decoration-none text-dark" th:href="@{/}">CarParts -></a>
@@ -26,7 +27,7 @@
                     </li>
                     <li>
                         <a class="text-decoration-none text-dark"
-                            th:href="@{/{brand}/parts/{submodel}
+                           th:href="@{/{brand}/parts/{submodel}
                             (brand=${submodelAndParts.model.brand.brandName},
                             submodel=${submodelAndParts.submodelName})}">
                             <th:block th:text="${submodelAndParts.model.modelName}"></th:block>
@@ -42,25 +43,25 @@
                 </ul>
             </div>
 
-<!--            If the user IS logged in-->
-            <div class="information" th:if="${@currentUser.isLogged()}">
+            <!--            If the user IS logged in-->
+            <div class="information" sec:authorize="isAuthenticated()">
                 <ul class="d-flex gap-2 list-unstyled">
                     <li>
                         <a class="text-decoration-none text-dark"
-                           th:href="@{/{uuid}/home(uuid=${@currentUser.getUuid()})}">CarParts -></a>
+                           th:href="@{/home}">CarParts -></a>
                     </li>
                     <li>
                         <a class="text-decoration-none text-dark brandName"
-                           th:href="@{/{uuid}/home/{brand}
-                           (uuid=${@currentUser.uuid}, brand=${submodelAndParts.model.brand.brandName})}">
+                           th:href="@{/home/{brand}
+                           (brand=${submodelAndParts.model.brand.brandName})}">
                             <th:block th:text="${submodelAndParts.model.brand.brandName}"></th:block>
                             ->
                         </a>
                     </li>
                     <li>
                         <a class="text-decoration-none text-dark"
-                           th:href="@{/{uuid}/home/{brand}/parts/{submodel}
-                            (uuid=${@currentUser.uuid}, brand=${submodelAndParts.model.brand.brandName},
+                           th:href="@{/home/{brand}/parts/{submodel}
+                            (brand=${submodelAndParts.model.brand.brandName},
                             submodel=${submodelAndParts.submodelName})}">
                             <th:block th:text="${submodelAndParts.model.modelName}"></th:block>
                             <th:block th:text="${submodelAndParts.submodelName}"></th:block>
@@ -80,31 +81,40 @@
 
                     <!--                    All parts of the group name - if the user is NOT logged in-->
                     <div class="part-container d-flex flex-column gap-2"
-                         th:unless="${@currentUser.isLogged()}">
+                         sec:authorize="!isAuthenticated()">
                         <img class="img-part" th:src="*{part.partImage}">
                         <p class="link-text part-paraf">
                             <th:block th:text="*{part.partName}"></th:block>
                         </p>
 
                         <div class="price-container d-flex justify-content-between gap-3">
-                            <p class="part-paraf"><th:block th:text="*{part.price}"></th:block> лв.</p>
-                            <button>ADD IN  <i class="fa-solid fa-cart-shopping"></i></button>
+                            <p class="part-paraf">
+                                <th:block th:text="*{part.price}"></th:block>
+                                лв.
+                            </p>
+                            <button onclick="addInShoppingCart()">
+                                ADD IN <i class="fa-solid fa-cart-shopping"></i>
+                            </button>
                         </div>
                         <a onclick="showMoreInfo()" class="show-text text-decoration-none">More</a>
                     </div>
 
                     <!--                    All parts of the group name - if the user IS logged in-->
-                    <div class="model-container d-flex flex-column gap-2"
-                         th:if="${@currentUser.isLogged()}">
+                    <div class="part-container d-flex flex-column gap-2"
+                         sec:authorize="isAuthenticated()">
                         <img class="img-part" th:src="*{part.partImage}">
                         <p class="link-text part-paraf">
                             <th:block th:text="*{part.partName}"></th:block>
                         </p>
                         <div class="price-container d-flex justify-content-between gap-3">
-                            <p class="part-paraf"><th:block th:text="*{part.price}"></th:block> лв.</p>
-                            <button>ADD IN  <i class="fa-solid fa-cart-shopping"></i></button>
+                            <p class="part-paraf">
+                                <th:block th:text="*{part.price}"></th:block>
+                                лв.
+                            </p>
+                            <button onclick="addInShoppingCart()">
+                                ADD IN <i class="fa-solid fa-cart-shopping"></i>
+                            </button>
                         </div>
-
                         <a onclick="showMoreInfo()" class="show-text text-decoration-none">More</a>
                     </div>
 
@@ -143,5 +153,33 @@
         let hiddenText = document.getElementsByClassName('more-info-not-visible')[0];
         hiddenText.style.display = 'none';
     }
+
+    // function addInShoppingCart() {
+    //     fetch('http://localhost:8080/{uuid}/shopping-cart').then(function (response) {
+    //         return response.text();
+    //     }).then(function (html) {
+    //         var parser = new DOMParser();
+    //         var doc = parser.parseFromString(html, "text/html");
+    //
+    //         let listWithAllParts = doc.getElementsByClassName('ul-brands')[0];
+    //
+    //         let parafWithPartName = document.getElementsByClassName('part-paraf')[0];
+    //         let partName = parafWithPartName.innerText;
+    //         let parafWithPartPrice = document.getElementsByClassName('part-paraf')[1];
+    //         let partPrice = parafWithPartPrice.innerText;
+    //
+    //         let liElementPart = document.createElement('li');
+    //         let pElementPartName = document.createElement('p');
+    //         let pElementPartPrice = document.createElement('p');
+    //         pElementPartName.innerText = partName;
+    //         pElementPartPrice.innerText = partPrice;
+    //         liElementPart.appendChild(pElementPartName);
+    //         liElementPart.appendChild(pElementPartPrice);
+    //         listWithAllParts.appendChild(liElementPart);
+    //     }).catch(function (error) {
+    //             console.warn('Something went wrong!', error);
+    //         }
+    //     )
+    // }
 </script>
 </html>

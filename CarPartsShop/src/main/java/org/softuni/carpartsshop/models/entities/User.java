@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -23,6 +24,9 @@ public class User extends BaseEntity {
     @Column(name = "last_name")
     private String lastName;
 
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<Role> roles;
+
     @NotNull
     @Email
     @Column(unique = true)
@@ -36,16 +40,12 @@ public class User extends BaseEntity {
     @Column(name = "created_on")
     private LocalDateTime createdOn;
 
-    @NotNull
-    @GeneratedValue(strategy = GenerationType.UUID)
-    @Column(unique = true)
-    private UUID uuid;
-
-    @ManyToMany(targetEntity = Part.class, mappedBy = "boughtBy", fetch = FetchType.LAZY)
+    @ManyToMany(targetEntity = Part.class, mappedBy = "boughtBy", fetch = FetchType.EAGER)
     private List<Part> boughtParts;
 
     public User() {
-
+        this.roles = new ArrayList<>();
+        this.boughtParts = new ArrayList<>();
     }
 
     public String getFirstName() {
@@ -88,14 +88,6 @@ public class User extends BaseEntity {
         this.createdOn = createdOn;
     }
 
-    public UUID getUuid() {
-        return uuid;
-    }
-
-    public void setUuid(UUID uuid) {
-        this.uuid = uuid;
-    }
-
     public List<Part> getBoughtParts() {
         return boughtParts;
     }
@@ -103,4 +95,13 @@ public class User extends BaseEntity {
     public void setBoughtParts(List<Part> boughtParts) {
         this.boughtParts = boughtParts;
     }
+
+    public List<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Role> roles) {
+        this.roles = roles;
+    }
+
 }

@@ -12,15 +12,13 @@
             <form
                     th:action="@{/login}"
                     th:method="POST"
-                    th:object="${loginDto}"
                     class="main-form mx-auto col-md-12 d-flex flex-column justify-content-center">
                 <div class="row">
 <!--                    Email of the user-->
                     <div class="form-group col-md-6 mb-3">
                         <label for="email" class="text-dark font-weight-bold">Email</label>
                         <input id="email" name="email"
-                               th:field="*{email}"
-                               th:errorclass="bg-danger"
+                               th:value="${email}"
                                type="text"
                                class="form-control"
                                placeholder="Email" required/>
@@ -30,8 +28,6 @@
                     <div class="form-group col-md-6 mb-3">
                         <label for="password" class="text-dark font-weight-bold">Password</label>
                         <input id="password" name="password"
-                               th:field="*{password}"
-                               th:errorclass="is-invalid"
                                type="password" class="form-control"
                                placeholder="Password" required/>
                     </div>
@@ -51,5 +47,4 @@
     <footer th:replace="~{fragments/footer}">
     </footer>
 </body>
-
 </html>

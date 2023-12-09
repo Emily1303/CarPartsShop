@@ -14,18 +14,12 @@ public class UserProfileController {
 
     private final UserService userService;
 
-    private final CurrentUser currentUser;
-
-    public UserProfileController(UserService userService, CurrentUser currentUser) {
+    public UserProfileController(UserService userService) {
         this.userService = userService;
-        this.currentUser = currentUser;
     }
 
-    @GetMapping("/{uuid}/profile")
-    public String profile(@PathVariable String uuid) {
-        if (!currentUser.isLogged()) {
-            return "redirect:/login";
-        }
+    @GetMapping("/profile")
+    public String profile() {
 
         return "user-profile";
     }

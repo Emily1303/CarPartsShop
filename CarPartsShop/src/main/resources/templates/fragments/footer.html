@@ -3,7 +3,7 @@
 <body>
 <footer th:fragment="footer" class="bg-dark text-white">
     <div class="container">
-        <nav class="inner-container container-footer d-flex justify-content-center gap-6">
+        <nav class="inner-container container-footer d-flex justify-content-center">
             <div>
                 <ul class="list-unstyled contacts-footer">
                     <li class="title"><b>CONTACTS</b></li>
@@ -12,11 +12,11 @@
                     </li>
                     <li>
                         <a class="text-white text-decoration-none" th:href="@{/}">
-                            <i class="fa-solid fa-envelope"></i> hshdhdh.sjjd@example.com
+                            <i class="fa-solid fa-envelope footer-icon"></i> hshdhdh.sjjd@example.com
                         </a>
                     </li>
                     <li>
-                        <span><i class="fa-solid fa-phone"></i> 0888123659</span>
+                        <span><i class="fa-solid fa-phone footer-icon"></i> 0888123659</span>
                     </li>
                 </ul>
             </div>
@@ -32,7 +32,7 @@
                         </li>
                         <li>
                             <a class="text-white text-decoration-none" th:href="@{/}">
-                                <i class="fa-brands fa-twitter"></i>
+                                <i class="fa-brands fa-x-twitter"></i>
                             </a>
                         </li>
                         <li>
@@ -43,6 +43,22 @@
                     </ul>
                 </ul>
             </div>
+
+            <div>
+                <ul class="list-unstyled contacts-footer">
+                    <li class="title"><b>USEFUL LINKS</b></li>
+                    <li>
+                        <a class="text-decoration-none text-white" th:href="@{/}">General Terms</a>
+                    </li>
+                    <li>
+                        <a class="text-white text-decoration-none" th:href="@{/}">Personal Data</a>
+                    </li>
+                    <li>
+                        <a class="text-white text-decoration-none" th:href="@{/}">Delivery</a>
+                    </li>
+                </ul>
+            </div>
+            <p>© 2023 - Car Parts Shop </p>
         </nav>
     </div>
 </footer>

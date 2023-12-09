@@ -15,21 +15,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class AddBrandController {
 
-    private CurrentUser currentUser;
-
     private BrandService brandService;
 
-    public AddBrandController(CurrentUser currentUser, BrandService brandService) {
-        this.currentUser = currentUser;
+    public AddBrandController(BrandService brandService) {
         this.brandService = brandService;
     }
 
-    @GetMapping("/{uuid}/brand")
-    public String addBrand(Model model, @PathVariable String uuid) {
-        if (!currentUser.isLogged()) {
-            return "redirect:/login";
-        }
-
+    @GetMapping("/brand")
+    public String addBrand(Model model) {
         if (!model.containsAttribute("addBrandDto")) {
             model.addAttribute("addBrandDto", AddBrandDto.construct());
         }
@@ -37,21 +30,21 @@ public class AddBrandController {
         return "add-brand";
     }
 
-    @PostMapping("/{uuid}/brand")
+    @PostMapping("/brand")
     public String addBrand(@Valid AddBrandDto addBrandDto, BindingResult bindingResult,
-                           RedirectAttributes rAttr, @PathVariable String uuid) {
+                           RedirectAttributes rAttr) {
 
         if (bindingResult.hasErrors()) {
             rAttr.addFlashAttribute("addBrandDto", addBrandDto);
             rAttr.addFlashAttribute("org.springframework.validation.BindingResult.addBrandDto",
                     bindingResult);
 
-            return "redirect:/" + uuid + "/brand";
+            return "redirect:/brand";
         }
 
         brandService.addNewBrand(addBrandDto);
 
-        return "redirect:/" + uuid + "/add/car";
+        return "redirect:/add/car";
     }
 
 }

@@ -38,9 +38,8 @@ public class LoadPartsController {
         return "show-parts";
     }
 
-    @GetMapping("/{uuid}/home/{name}/parts/{submodel}/{group}")
-    public String getAllPartsHomePage(@PathVariable("uuid") String uuid,
-                                      @PathVariable("name") String name,
+    @GetMapping("/home/{name}/parts/{submodel}/{group}")
+    public String getAllPartsHomePage(@PathVariable("name") String name,
                                       @PathVariable("submodel") String submodel,
                                       @PathVariable("group") String group, Model model) {
 

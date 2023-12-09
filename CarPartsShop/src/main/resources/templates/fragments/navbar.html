@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <body>
 <header th:fragment="navbar">
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
@@ -8,44 +9,48 @@
                 C<i class="fa-solid fa-gear"></i>rP<i class="fa-solid fa-gear"></i>rts
             </a>
             <ul class="navbar-nav mr-auto justify-content-between ul-style">
-                <li class="nav-item" th:if="${@currentUser.isLogged()}">
+                <li class="nav-item" sec:authorize="isAuthenticated()">
                     <a class="nav-link text-white"
-                       th:href="@{/{uuid}/home(uuid=${@currentUser.getUuid()})}">Home</a>
+                       th:href="@{/home}">Home</a>
                 </li>
 
-                <li class="nav-item" th:if="${@currentUser.isLogged()}">
+                <li class="nav-item"
+                    sec:authorize="isAuthenticated()">
                     <a class="nav-link text-white"
-                       th:href="@{/{uuid}/add/parts(uuid=${@currentUser.getUuid()})}">Add Part</a>
+                       th:href="@{/add/parts}">Add Part</a>
                 </li>
 
-                <li class="nav-item" th:if="${@currentUser.isLogged()}">
+                <li class="nav-item" sec:authorize="isAuthenticated()">
                     <a class="nav-link text-white"
-                       th:href="@{/{uuid}/add/car(uuid=${@currentUser.getUuid()})}">Add Car</a>
+                       th:href="@{/add/car}">Add Car</a>
                 </li>
 
-                <li class="nav-item" th:if="${@currentUser.isLogged()}">
+                <li class="nav-item" sec:authorize="isAuthenticated()">
                     <a class="nav-link text-white"
-                       th:href="@{/{uuid}/brand(uuid=${@currentUser.getUuid()})}">Add Brand</a>
+                       th:href="@{/brand}">Add Brand</a>
                 </li>
 
-                <li class="nav-item" th:unless="${@currentUser.isLogged()}">
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
                     <a class="nav-link text-white" th:href="@{/register}">Registration</a>
                 </li>
 
-                <li class="nav-item" th:unless="${@currentUser.isLogged()}">
+                <li class="nav-item" sec:authorize="!isAuthenticated()">
                     <a class="nav-link text-white" th:href="@{/login}">Login</a>
                 </li>
 
-                <li class="nav-item" th:if="${@currentUser.isLogged()}">
+                <li class="nav-item" sec:authorize="isAuthenticated()">
                     <div class="form-inline my-2 my-lg-0 d-flex align-items-center gap-3">
                         <a class="logged-user text-primary text-decoration-none"
-                           th:href="@{/{uuid}/profile(uuid=${@currentUser.getUuid()})}">
-                            <th:block th:text="${@currentUser.getFullName()}"></th:block>
+                           th:href="@{/profile}">
+                            <th:block sec:authentication="name"></th:block>
                         </a>
                         <a class="text-white"
-                            th:href="@{/{uuid}/shopping-cart(uuid=${@currentUser.getUuid()})}">
+                            th:href="@{/shopping-cart}">
                             <i class="fa-solid fa-cart-shopping"></i></a>
-                        <a class="nav-link" th:href="@{/logout}">Logout</a>
+                        <form th:method="post"
+                                th:action="@{/logout}">
+                            <input type="submit" class="btn btn-link" value="Logout"/>
+                        </form>
                     </div>
                 </li>
             </ul>

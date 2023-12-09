@@ -39,3 +39,6 @@ spring:
       cache:
         period: 0
 
+#logging:
+#  level:
+#    org.springframework.security: TRACE
