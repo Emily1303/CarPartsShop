@@ -31,7 +31,7 @@ public class LoadModelsController {
 
         Set<org.softuni.carpartsshop.models.entities.Model> allModels = brandService.getAllModelsByBrandName(name);
         model.addAttribute("allModels", allModels);
-        return "submodels";
+        return "submodels-home-page";
     }
 
 }
