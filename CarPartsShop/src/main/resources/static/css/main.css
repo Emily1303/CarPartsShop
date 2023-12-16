@@ -158,7 +158,7 @@ h1 {
     margin-bottom: auto;
 }
 
-.price-container > button {
+.price-container > button, .price-container > form > button {
     background-color: midnightblue;
     color: white;
     font-weight: bold;

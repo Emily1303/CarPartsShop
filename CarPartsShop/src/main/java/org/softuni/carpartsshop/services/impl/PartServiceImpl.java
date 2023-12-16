@@ -1,6 +1,8 @@
 package org.softuni.carpartsshop.services.impl;
 
 import org.softuni.carpartsshop.models.dtos.forLogic.AddPartDto;
+import org.softuni.carpartsshop.models.dtos.forTemplates.AllPartDtos;
+import org.softuni.carpartsshop.models.dtos.forTemplates.PartDto;
 import org.softuni.carpartsshop.models.entities.Part;
 import org.softuni.carpartsshop.models.entities.Submodel;
 import org.softuni.carpartsshop.repositories.PartRepository;
@@ -10,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -53,6 +56,26 @@ public class PartServiceImpl implements PartService {
         }
 
         return allPartsOfGivenGroup;
+    }
+
+    @Override
+    public Part addPartInShoppingCart(Long id) {
+        Optional<Part> byId = partRepository.findById(id);
+
+        return byId.orElse(null);
+
+    }
+
+    @Override
+    public AllPartDtos showInShoppingCart(Part part) {
+        List<PartDto> allPartsToShow = new ArrayList<>();
+
+        PartDto partDto = new PartDto();
+        partDto.setPartName(part.getPartName());
+        partDto.setPrice(part.getPrice());
+        allPartsToShow.add(partDto);
+
+        return new AllPartDtos(allPartsToShow);
     }
 
 }

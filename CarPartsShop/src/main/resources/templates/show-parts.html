@@ -92,7 +92,7 @@
                                 <th:block th:text="*{part.price}"></th:block>
                                 лв.
                             </p>
-                            <button onclick="addInShoppingCart()">
+                            <button>
                                 ADD IN <i class="fa-solid fa-cart-shopping"></i>
                             </button>
                         </div>
@@ -111,9 +111,11 @@
                                 <th:block th:text="*{part.price}"></th:block>
                                 лв.
                             </p>
-                            <button onclick="addInShoppingCart()">
-                                ADD IN <i class="fa-solid fa-cart-shopping"></i>
-                            </button>
+                            <form th:method="post" th:action="@{/home/add/{id}(id=*{part.id})}">
+                                <button>
+                                    ADD IN <i class="fa-solid fa-cart-shopping"></i>
+                                </button>
+                            </form>
                         </div>
                         <a onclick="showMoreInfo()" class="show-text text-decoration-none">More</a>
                     </div>
