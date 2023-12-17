@@ -24,7 +24,8 @@ public class CarPartsShopUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         return userRepository.findByEmail(email).map(this :: map)
-                .orElseThrow(() -> new UsernameNotFoundException("User with email " + email + " is not found!"));
+                .orElseThrow(() ->
+                        new UsernameNotFoundException("User with email " + email + " is not found!"));
     }
 
 //    if there is a user with this email in the database - map the info to the current user
