@@ -51,4 +51,23 @@ class AddCarControllerTestIT {
                 .andExpect(view().name("redirect:/add/parts"));
     }
 
+    @Test
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    void addCarPostNotValid() throws Exception {
+        mockMvc.perform(
+                        MockMvcRequestBuilders.post("/add/car")
+                                .param("brandName", "Audi")
+                                .param("modelName", "A5")
+                                .param("submodelName", "")
+                                .param("submodelImage", "cabrio.png")
+                                .param("engine", "1.4 Turbo")
+                                .param("engineCode", "249313")
+                                .param("horsePower", String.valueOf(BigDecimal.valueOf(223)))
+                                .param("year", "03.2014 - 06.2019")
+                                .param("fuel", String.valueOf(FuelsEnum.PETROL))
+                                .with(csrf()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/add/car"));
+    }
+
 }

@@ -61,6 +61,25 @@ class AddPartControllerTestIT {
                 .andExpect(view().name("redirect:/home"));
     }
 
+    @Test
+    @WithMockUser(username = "admin", roles = {"ADMIN"})
+    void addPartPostNotValid() throws Exception {
+
+        mockMvc.perform(
+                        MockMvcRequestBuilders.post("/add/parts")
+                                .param("submodelName", "Cabrio")
+                                .param("partName", "Front axle")
+                                .param("partImage", "front.png")
+                                .param("groupName", "Braking pads")
+                                .param("kind", "")
+                                .param("manufacturer", "ATE")
+                                .param("serialNumber", "333333")
+                                .param("price", String.valueOf(BigDecimal.valueOf(123)))
+                                .with(csrf()))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/add/parts"));
+    }
+
     private static AddPartDto addPartDto() {
         return new AddPartDto("Cabrio", "Front axle", "front.png",
                 "Braking pads", "Brake pad", "ATE", "333333",
