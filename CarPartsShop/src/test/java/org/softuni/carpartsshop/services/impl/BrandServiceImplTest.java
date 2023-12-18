@@ -1,5 +1,6 @@
 package org.softuni.carpartsshop.services.impl;
 
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -32,6 +33,12 @@ class BrandServiceImplTest {
     @BeforeEach
     void setUp() {
         serviceToTest = new BrandServiceImpl(mockBrandRepository, modelMapper);
+        mockBrandRepository.deleteAll();
+    }
+
+    @AfterEach
+    void tearDown() {
+        mockBrandRepository.deleteAll();
     }
 
     @Test
@@ -50,12 +57,17 @@ class BrandServiceImplTest {
         serviceToTest.addNewBrand(addBrandDto());
     }
 
-//    @Test
-//    void returnBrandModels() {
-//        Brand brand = testBrand();
-//        when(mockBrandRepository.findByBrandName(testBrand().getBrandName()))
-//                .thenReturn(Optional.of(brand));
-//    }
+    @Test
+    void returnBrandModels() {
+        Brand brand = testBrand();
+        when(mockBrandRepository.findByBrandName(testBrand().getBrandName()))
+                .thenReturn(Optional.of(brand));
+
+        Set<Model> allModels = serviceToTest.getAllModelsByBrandName(testBrand().getBrandName());
+
+        Assertions.assertEquals(testBrand().getModels().size(), allModels.size(),
+                "The brand models are not mapped!");
+    }
 
     private static AddCarDto addCarDto() {
         return new AddCarDto("Audi", "A5", "Cabrio",
