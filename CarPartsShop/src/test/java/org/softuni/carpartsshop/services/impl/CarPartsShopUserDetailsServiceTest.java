@@ -17,6 +17,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -35,7 +36,7 @@ class CarPartsShopUserDetailsServiceTest {
 //    when the user is not found -> throws exception
     @Test
     void testUsernameNotFound() {
-        Assertions.assertThrows(UsernameNotFoundException.class,
+        assertThrows(UsernameNotFoundException.class,
                 () -> serviceToTest.loadUserByUsername("emily@example.com"));
     }
 
@@ -50,14 +51,15 @@ class CarPartsShopUserDetailsServiceTest {
         UserDetails userDetails = serviceToTest.loadUserByUsername(testUser().getEmail());
 
 //        Assert - test if the user from the repository is the same as the user from the userDetails
-        Assertions.assertEquals(testUser().getEmail(),
+        assertNotNull(userDetails);
+        assertEquals(testUser().getEmail(),
                 userDetails.getUsername(), "The username is not mapped to email!");
-        Assertions.assertEquals(testUser().getPassword(), userDetails.getPassword(),
+        assertEquals(testUser().getPassword(), userDetails.getPassword(),
                 "The password is not mapped to the right password!");
-        Assertions.assertEquals(testUser().getRoles().size(), userDetails.getAuthorities().size());
-        Assertions.assertTrue(containsAuthority(userDetails, "ROLE_" + RoleNamesEnum.ADMIN),
+        assertEquals(testUser().getRoles().size(), userDetails.getAuthorities().size());
+        assertTrue(containsAuthority(userDetails, "ROLE_" + RoleNamesEnum.ADMIN),
                 "The ADMIN role is not mapped!");
-        Assertions.assertTrue(containsAuthority(userDetails, "ROLE_" + RoleNamesEnum.USER),
+        assertTrue(containsAuthority(userDetails, "ROLE_" + RoleNamesEnum.USER),
                 "The USER role is not mapped!");
     }
 
