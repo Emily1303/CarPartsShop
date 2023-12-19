@@ -14,6 +14,7 @@ public class FirstInterceptor implements HandlerInterceptor {
 
 //    this interceptor is for logging - in the log are present the HTTP methods, URLs and Cookies of the
 //    request; the status of the response and a message if the response is visible for the client
+
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
             throws Exception {
