@@ -28,6 +28,7 @@ public class SecurityConfiguration {
                         .requestMatchers("/", "/{name}", "/{name}/parts/{submodel}",
                                 "/{name}/parts/{submodel}/{group}", "/login",
                                 "/register", "/login-error").permitAll()
+                        .requestMatchers("/error").permitAll()
                         .requestMatchers("/add/brand", "/add/car", "/add/parts")
                         .hasRole(RoleNamesEnum.ADMIN.name())
                         .requestMatchers("/home/shopping-cart", "/home/profile").hasRole(RoleNamesEnum.USER.name())

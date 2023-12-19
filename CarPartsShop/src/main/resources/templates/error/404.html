@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head th:replace="~{/fragments/head}">
+</head>
+
+<body>
+<header th:replace="~{fragments/navbar}">
+</header>
+
+    <main class="section-container">
+        <div class="container">
+            <div class="inner-container">
+                <h1>Uppsss ......, you are looking for something that is not here!</h1>
+                <h2>We are sorry!</h2>
+
+                <a sec:authorize="!isAuthenticated()" th:href="@{/}">Go to home page -></a>
+                <a sec:authorize="isAuthenticated()" th:href="@{/home}">Go to home page -></a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

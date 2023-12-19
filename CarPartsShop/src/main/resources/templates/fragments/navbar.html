@@ -5,9 +5,15 @@
 <header th:fragment="navbar">
     <nav class="navbar navbar-expand-lg bg-dark navbar-dark fixed-top">
         <div class="collapse navbar-collapse">
-            <a class="navbar-brand text-white brand" th:href="@{/}">
+            <a class="navbar-brand text-white brand" sec:authorize="!isAuthenticated()" th:href="@{/}">
                 C<i class="fa-solid fa-gear"></i>rP<i class="fa-solid fa-gear"></i>rts
             </a>
+
+            <a class="navbar-brand text-white brand" sec:authorize="isAuthenticated()"
+               th:href="@{/home}">
+                C<i class="fa-solid fa-gear"></i>rP<i class="fa-solid fa-gear"></i>rts
+            </a>
+
             <ul class="navbar-nav mr-auto justify-content-between ul-style">
                 <li class="nav-item" sec:authorize="isAuthenticated()">
                     <a class="nav-link text-white"
@@ -41,17 +47,17 @@
                 <li class="nav-item" sec:authorize="isAuthenticated()">
                     <div class="form-inline my-2 d-flex align-items-center gap-3">
                         <a sec:authorize="hasRole('USER')"
-                                class="logged-user text-primary text-decoration-none"
+                           class="logged-user text-primary text-decoration-none"
                            th:href="@{/home/profile}">
                             <th:block sec:authentication="name"></th:block>
                         </a>
                         <a sec:authorize="hasRole('USER')"
-                                class="text-white"
-                            th:href="@{/home/shopping-cart}">
+                           class="text-white"
+                           th:href="@{/home/shopping-cart}">
                             <i class="fa-solid fa-cart-shopping"></i></a>
                         <form sec:authorize="isAuthenticated()"
-                                th:method="post"
-                                th:action="@{/logout}">
+                              th:method="post"
+                              th:action="@{/logout}">
                             <input type="submit"
                                    class="logout-btn btn btn-link text-decoration-none"
                                    value="Logout"/>
